@@ -24,4 +24,10 @@ public class CharacterStats : MonoBehaviour
         HSlider.size = (curHealth / maxHealth);
         FlaskNumDisplay.text = flaskNum.ToString();
     }
+
+    public void Rest()
+    {
+        flaskNum = maxFlasks;
+        curHealth = maxHealth;
+    }
 }
