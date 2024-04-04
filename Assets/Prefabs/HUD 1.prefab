@@ -1413,7 +1413,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb0b1f39922a926419bf140008d3b6d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameUI: {fileID: 2996769590996779692}
+  paused: 0
 --- !u!225 &2996769591216305992
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -2094,7 +2094,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPaused: 0
   cg: {fileID: 2996769591216305992}
-  GameUI: {fileID: 2996769590996779692}
 --- !u!114 &758342390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2109,7 +2108,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPaused: 0
   cg: {fileID: 0}
-  GameUI: {fileID: 0}
 --- !u!1 &4889434815726004009
 GameObject:
   m_ObjectHideFlags: 0
@@ -2237,8 +2235,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ResumeHandler, Assembly-CSharp
+      - m_Target: {fileID: 384977885729794689}
+        m_TargetAssemblyTypeName: TutorialHandler, Assembly-CSharp
         m_MethodName: OnButtonClick
         m_Mode: 1
         m_Arguments:
@@ -2248,7 +2246,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
 --- !u!2083052967 &4484452815412839833
 VisualEffect:
   m_ObjectHideFlags: 0
@@ -2373,9 +2371,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a03810ba8e1fcf4bb0b008b6c980bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPaused: 0
-  cg: {fileID: 2996769591216305992}
-  tutorialScreen: {fileID: 0}
 --- !u!1 &6753080899653369301
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,7 +12,6 @@ public class PauseScript : MonoBehaviour
     {
         Time.timeScale = 1;
         paused = false;
-        Cursor.lockState = CursorLockMode.None;
     }
 
     //// Update is called once per frame

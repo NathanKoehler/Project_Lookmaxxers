@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class TutorialHandler : MonoBehaviour
 {
-    public CanvasGroup cg;
-    public Canvas tutorialScreen;
     // Start is called before the first frame update
     void Start()
     {
