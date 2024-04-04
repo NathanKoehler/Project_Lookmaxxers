@@ -2,11 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ResumeHandler : MonoBehaviour
+public class TutorialHandler : MonoBehaviour
 {
     // Start is called before the first frame update
-    public bool isPaused;
-    public CanvasGroup cg;
     void Start()
     {
         
@@ -17,13 +15,10 @@ public class ResumeHandler : MonoBehaviour
     {
         
     }
+
     public void OnButtonClick()
     {
         Debug.Log("Button Clicked");
-        Time.timeScale = 1f;
-        cg.interactable = false;
-        cg.alpha = 0.0f;
-        GameManager.Instance.paused = false;
-        GameManager.Instance.GameUI.SetActive(true);
+        //tutorialScreen.gameObject.SetActive(true);
     }
 }
