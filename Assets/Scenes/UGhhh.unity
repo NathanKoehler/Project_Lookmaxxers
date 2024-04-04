@@ -1974,12 +1974,12 @@ PrefabInstance:
     - target: {fileID: 4767894313005003010, guid: e92be5f3584ed284f80026840cb9c547,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.36
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4767894313005003010, guid: e92be5f3584ed284f80026840cb9c547,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4767894313005003010, guid: e92be5f3584ed284f80026840cb9c547,
         type: 3}
@@ -1989,12 +1989,12 @@ PrefabInstance:
     - target: {fileID: 4767894313354279222, guid: e92be5f3584ed284f80026840cb9c547,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4767894313354279222, guid: e92be5f3584ed284f80026840cb9c547,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8368085426543726389, guid: e92be5f3584ed284f80026840cb9c547,
         type: 3}
@@ -2029,7 +2029,7 @@ PrefabInstance:
     - target: {fileID: 8368085427454131297, guid: e92be5f3584ed284f80026840cb9c547,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8368085427454131325, guid: e92be5f3584ed284f80026840cb9c547,
         type: 3}
@@ -3361,6 +3361,7 @@ MonoBehaviour:
   currSelectedWeapon: 0
   againstTag: Enemy
   damage: 10
+  staminaCost: 0
   magicProj: {fileID: 0}
 --- !u!54 &603739225
 Rigidbody:
