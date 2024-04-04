@@ -5,27 +5,30 @@ using UnityEngine;
 public class PauseScript : MonoBehaviour
 {
 
-    private bool paused;
+    public bool paused;
 
     //// Start is called before the first frame update
     void Start()
     {
         Time.timeScale = 1;
         paused = false;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     //// Update is called once per frame
     void Update()
     {
-        if (paused) {
+        if (GameManager.Instance.paused) {
             if (Input.GetKeyUp(KeyCode.Escape)) {
                 Time.timeScale = 1;
-                paused = false;
+                GameManager.Instance.paused = false;
+                GameManager.Instance.GameUI.gameObject.SetActive(true);
             }
         } else {
             if (Input.GetKeyUp(KeyCode.Escape)) {
                 Time.timeScale = 0;
-                paused = true;
+                GameManager.Instance.paused = true;
+                GameManager.Instance.GameUI.gameObject.SetActive(false);
             }
         }
     }
