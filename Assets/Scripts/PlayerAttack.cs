@@ -8,10 +8,16 @@ public class PlayerAttack : MonoBehaviour
     private Animator animator;
     private CharacterStats characterStats;
 
+    public GameObject weaponRoot;
+    private WeaponScript weaponScript;
+    private PlayerMetrics playerMetrics;
     void Start()
     {
         animator = GetComponent<Animator>();
         characterStats = GetComponent<CharacterStats>();
+
+        weaponScript = weaponRoot.GetComponent<WeaponScript>();
+        playerMetrics = GetComponent<PlayerMetrics>();
     }
 
     // Update is called once per frame
@@ -20,6 +26,7 @@ public class PlayerAttack : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && characterStats.CanAttack())
         {
             Attack();
+            playerMetrics.weaponUsed[weaponScript.currSelectedWeapon]++;
         }
     }
 
