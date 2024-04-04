@@ -7906,6 +7906,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 6.2499995, y: 5, z: 5}
   m_Center: {x: -0.62499976, y: 5.9206947e-16, z: -0.00000023841856}
+--- !u!114 &1488043424 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1575972173353140784, guid: db7f0b1cfa2e4ae44b758391df364711,
+    type: 3}
+  m_PrefabInstance: {fileID: 758342388}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1490335622 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 824402894629664830, guid: aaee2d180859ad9409f32c54b353d62d,
@@ -18687,6 +18699,7 @@ GameObject:
   - component: {fileID: 6982812147933622148}
   - component: {fileID: 6982812147933622149}
   - component: {fileID: 6982812147933622150}
+  - component: {fileID: 6982812147933622151}
   m_Layer: 8
   m_Name: PlayerArmature
   m_TagString: Untagged
@@ -19572,6 +19585,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 218bb660b2196c24a847797ebbb498f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponRoot: {fileID: 603739222}
 --- !u!114 &6982812147933622150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19585,6 +19599,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   holdDurationThreshold: 0.5
+  weaponRoot: {fileID: 603739222}
+--- !u!114 &6982812147933622151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4416926083347132227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b76dfd0333a47c49ba6ca352d39f669, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponUsed: 
+  metricsText: {fileID: 1488043424}
 --- !u!4 &7078722786019413435
 Transform:
   m_ObjectHideFlags: 0

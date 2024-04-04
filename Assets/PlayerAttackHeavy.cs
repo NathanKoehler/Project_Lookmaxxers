@@ -11,12 +11,17 @@ public class PlayerAttackHeavy : MonoBehaviour
     private Animator animator;
     private CharacterStats characterStats;
 
-
+    public GameObject weaponRoot;
+    private WeaponScript weaponScript;
+    private PlayerMetrics playerMetrics;
 
     void Start()
     {
         characterStats = GetComponent<CharacterStats>();
         animator = GetComponent<Animator>();
+
+        weaponScript = weaponRoot.GetComponent<WeaponScript>();
+        playerMetrics = GetComponent<PlayerMetrics>();
     }
 
     void Update()
@@ -25,6 +30,7 @@ public class PlayerAttackHeavy : MonoBehaviour
         if (Input.GetMouseButtonDown(1) && characterStats.CanAttack())
         {
             animator.SetTrigger("heavyAttack");
+            playerMetrics.weaponUsed[weaponScript.currSelectedWeapon]++;
         }
 
         // // Check if the left mouse button is pressed down
