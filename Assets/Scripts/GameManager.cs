@@ -6,7 +6,10 @@ public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
     public bool paused { get; set; }
+    public bool toControlScreen { get; set; }
     public GameObject GameUI;
+    public CanvasGroup controls;
+    public CanvasGroup pauseMenu;
 
     public static GameManager Instance
     {
@@ -28,6 +31,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.None;
+        controls.gameObject.SetActive(false);
     }
 
     // Update is called once per frame

@@ -19,6 +19,11 @@ public class TutorialHandler : MonoBehaviour
     public void OnButtonClick()
     {
         Debug.Log("Button Clicked");
-        //tutorialScreen.gameObject.SetActive(true);
+        GameManager.Instance.controls.interactable = true;
+        GameManager.Instance.controls.alpha = 1.0f;
+        GameManager.Instance.controls.gameObject.SetActive(true);
+        GameManager.Instance.pauseMenu.interactable = false;
+        GameManager.Instance.pauseMenu.alpha = 0.0f;
+        //canvas.gameObject.SetActive(true);
     }
 }
