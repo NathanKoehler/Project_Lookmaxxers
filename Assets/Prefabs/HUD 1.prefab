@@ -1626,7 +1626,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb0b1f39922a926419bf140008d3b6d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  paused: 0
 --- !u!225 &2996769591216305992
 CanvasGroup:
   m_ObjectHideFlags: 0
