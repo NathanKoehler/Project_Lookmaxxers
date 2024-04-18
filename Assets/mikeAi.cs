@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class mikeAi : MonoBehaviour, IEntityStats
+public class mikeAi : IEntityStats
 {
     [SerializeField]
     private float staminaRegenRate = 2f;
@@ -26,6 +26,8 @@ public class mikeAi : MonoBehaviour, IEntityStats
 
     private Collider rootCollider;
     private NavMeshAgent navMeshAgent;
+    private GameObject bossfightController;
+    private PlayerRange bossfightPlayerRange;
     public GameObject ladder;
 
     //Stats
@@ -34,7 +36,6 @@ public class mikeAi : MonoBehaviour, IEntityStats
     public float maxHP = 100;
     public float curStamina = 10;
     public float maxStamina = 10;
-    public bool isDead = false;
 
     [HideInInspector]
     public bool isStaggered = false;
@@ -60,7 +61,8 @@ public class mikeAi : MonoBehaviour, IEntityStats
         weaponScript = weaponRoot.GetComponent<WeaponScript>();
         rootCollider = GetComponent<Collider>();
         navMeshAgent = GetComponent<NavMeshAgent>();
-
+        bossfightPlayerRange = GetComponentInParent<PlayerRange>();
+        bossfightController = bossfightPlayerRange.gameObject;
     }
 
     void Update()
@@ -81,6 +83,12 @@ public class mikeAi : MonoBehaviour, IEntityStats
             {
                 staminaRegenDelayTimer += Time.deltaTime;
             }
+        }
+
+
+        if (player == null)
+        {
+            ChangeState(State.Idle);
         }
 
         // STATE MACHINE
@@ -151,6 +159,7 @@ public class mikeAi : MonoBehaviour, IEntityStats
 
     void attacking()
     {
+
         if (Random.value > chanceOfHeavyAttack)
         {
             anim.SetTrigger("LightAttack");
@@ -186,27 +195,36 @@ public class mikeAi : MonoBehaviour, IEntityStats
 
     private bool CanSeePlayer()
     {
-        // Define the direction from the agent to the player
-        Vector3 direction = player.position - head.transform.position;
-
-        // Perform the raycast
-        RaycastHit hit;
-        if (Physics.Raycast(head.transform.position, direction, out hit))
+        if (bossfightPlayerRange.isNearEntity)
         {
-            // If the ray hits an object tagged as "Player", return true
-            if (hit.collider.CompareTag("Player"))
-            {
-                // Draw a line from the agent to the player for visualization
-                Debug.DrawLine(head.transform.position, player.position, Color.green);
-                return true;
-            }
+            return true;
+        }
+        else
+        {
+            return false;
         }
 
-        // Draw a line from the agent to the maximum detection range for visualization
-        Debug.DrawRay(head.transform.position, direction.normalized * maxDetectionRange, Color.red);
+        //// Define the direction from the agent to the player
+        //Vector3 direction = player.position - head.transform.position;
 
-        // If the ray doesn't hit the player, return false
-        return false;
+        //// Perform the raycast
+        //RaycastHit hit;
+        //if (Physics.Raycast(head.transform.position, direction, out hit))
+        //{
+        //    // If the ray hits an object tagged as "Player", return true
+        //    if (hit.collider.CompareTag("Player"))
+        //    {
+        //        // Draw a line from the agent to the player for visualization
+        //        Debug.DrawLine(head.transform.position, player.position, Color.green);
+        //        return true;
+        //    }
+        //}
+
+        //// Draw a line from the agent to the maximum detection range for visualization
+        //Debug.DrawRay(head.transform.position, direction.normalized * maxDetectionRange, Color.red);
+
+        //// If the ray doesn't hit the player, return false
+        //return false;
     }
 
     private void approachPlayer()
@@ -224,7 +242,7 @@ public class mikeAi : MonoBehaviour, IEntityStats
         anim.SetFloat("Blend", agent.velocity.magnitude);
     }
 
-    public void TakeDamage(int damage)
+    public override void TakeDamage(int damage)
     {
 
         currHP -= damage;
@@ -233,28 +251,28 @@ public class mikeAi : MonoBehaviour, IEntityStats
             isDead = true;
         }
     }
-    public void StartStagger()
+    public override void StartStagger()
     {
         isStaggered = true;
     }
-    public void EndStagger()
+    public override void EndStagger()
     {
         isStaggered = false;
     }
 
-    public void OnAttackBegin()
+    public override void OnAttackBegin()
     {
         curStamina -= weaponScript.GetStaminaCost();
         staminaRegenDelayTimer = 0;
         weaponScript.OnAttackBegin();
     }
 
-    public void OnAttackEnd()
+    public override void OnAttackEnd()
     {
         weaponScript.OnAttackEnd();
     }
 
-    public IEnumerator Die()
+    public override IEnumerator Die()
     {
         rootCollider.enabled = false;
         navMeshAgent.enabled = false;

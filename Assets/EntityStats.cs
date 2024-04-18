@@ -2,16 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IEntityStats
+public abstract class IEntityStats: MonoBehaviour
 {
-    public void TakeDamage(int damage);
-    public IEnumerator Die();
+    public abstract void TakeDamage(int damage);
+    public abstract IEnumerator Die();
 
-    public void StartStagger();
+    public abstract void StartStagger();
 
-    public void EndStagger();
+    public abstract void EndStagger();
 
-    public void OnAttackBegin();
+    public abstract void OnAttackBegin();
 
-    public void OnAttackEnd();
+    public abstract void OnAttackEnd();
+
+    public bool isDead = false;
 }

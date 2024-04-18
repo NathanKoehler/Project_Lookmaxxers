@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using StarterAssets;
 
-public class CharacterStats : MonoBehaviour, IEntityStats
+public class CharacterStats : IEntityStats
 {
     [SerializeField]
     private float staminaRegenRate = 6f;
@@ -37,7 +37,6 @@ public class CharacterStats : MonoBehaviour, IEntityStats
     public bool isRolling = false;
     public bool isAttacking = false;
     public bool isStaggered = false;
-    public bool isDead = false;
     public bool isSprinting = false;
     public float defaultStaggerThreshold = 8f;
     public GameObject weaponRoot;
@@ -151,7 +150,7 @@ public class CharacterStats : MonoBehaviour, IEntityStats
 
     }
 
-    public void TakeDamage(int damage)
+    public override void TakeDamage(int damage)
     {
         curHealth -= damage;
         staggerThreshold += (damage / 12f) * (defaultStaggerThreshold / staggerThreshold);
@@ -175,7 +174,7 @@ public class CharacterStats : MonoBehaviour, IEntityStats
         curStamina -= 10;
     }
 
-    public void OnAttackBegin()
+    public override void OnAttackBegin()
     {
         Debug.Log("Attack Begin");
         weaponScript.OnAttackBegin();
@@ -187,7 +186,7 @@ public class CharacterStats : MonoBehaviour, IEntityStats
         }
     }
 
-    public void OnAttackEnd()
+    public override void OnAttackEnd()
     {
         Debug.Log("Attack End");
         weaponScript.OnAttackEnd();
@@ -205,7 +204,7 @@ public class CharacterStats : MonoBehaviour, IEntityStats
         vfxSlashObj.SetActive(true);
     }
 
-    public IEnumerator Die()
+    public override IEnumerator Die()
     {
         tController.enabled = false;
         cController.enabled = false;
@@ -248,11 +247,11 @@ public class CharacterStats : MonoBehaviour, IEntityStats
         anim.SetTrigger("Stagger");
     }
 
-    public void StartStagger()
+    public override void StartStagger()
     {
         isStaggered = true;
     }
-    public void EndStagger()
+    public override void EndStagger()
     {
         isStaggered = false;
     }

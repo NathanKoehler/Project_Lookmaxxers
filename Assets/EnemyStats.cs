@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem.XR;
 
-public class EnemyStats : MonoBehaviour, IEntityStats
+public class EnemyStats : IEntityStats
 {
     [SerializeField]
     private float staminaRegenRate = 2f;
@@ -35,7 +35,6 @@ public class EnemyStats : MonoBehaviour, IEntityStats
     public float retreatSpeed = 1;
     public float retreatDistance = 2;
     public float defaultStaggerThreshold = 8f;
-    public bool isDead = false;
 
     // Start is called before the first frame update
     void Start()
@@ -74,7 +73,7 @@ public class EnemyStats : MonoBehaviour, IEntityStats
         }
     }
 
-    public void TakeDamage(int damage)
+    public override void TakeDamage(int damage)
     {
         curHealth -= damage;
         staggerThreshold += (damage / 8f) * (defaultStaggerThreshold / staggerThreshold);
@@ -88,14 +87,14 @@ public class EnemyStats : MonoBehaviour, IEntityStats
         }
     }
 
-    public void OnAttackBegin()
+    public override void OnAttackBegin()
     {
         curStamina -= weaponScript.GetStaminaCost();
         staminaRegenDelayTimer = 0;
         weaponScript.OnAttackBegin();
     }
 
-    public void OnAttackEnd()
+    public override void OnAttackEnd()
     {
         weaponScript.OnAttackEnd();
     }
@@ -110,16 +109,16 @@ public class EnemyStats : MonoBehaviour, IEntityStats
         retreatThreshold = Random.Range(0, maxStamina / 1.5f);
     }
 
-    public void StartStagger()
+    public override void StartStagger()
     {
         isStaggered = true;
     }
-    public void EndStagger()
+    public override void EndStagger()
     {
         isStaggered = false;
     }
 
-    public IEnumerator Die()
+    public override IEnumerator Die()
     {
         controller.enabled = false;
         rootCollider.enabled = false;

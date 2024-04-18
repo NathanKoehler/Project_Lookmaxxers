@@ -6,6 +6,10 @@ public class PlayerRange : MonoBehaviour
 {
     // Start is called before the first frame update
     public bool isNearEntity;
+
+    public IEntityStats player;
+
+
     void Start()
     {
         isNearEntity = false;
@@ -14,22 +18,31 @@ public class PlayerRange : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (isNearEntity && player.isDead)
+        {
+            isNearEntity = false;
+        }
     }
 
     private void OnTriggerEnter(Collider collider)
     {
-        if (collider.tag == "Player")
+        if (!isNearEntity && collider.tag == "Player")
         {
             isNearEntity = true;
+            player = FindEntityWithStats(collider.gameObject).GetComponent<IEntityStats>();
         }
     }
 
-    private void OnTriggerExit(Collider collider)
+    private GameObject FindEntityWithStats(GameObject obj)
     {
-        if (collider.tag == "Player")
+        IEntityStats stats = obj.GetComponent<IEntityStats>();
+        if (stats != null)
         {
-            isNearEntity = false;
+            return obj;
+        }
+        else
+        {
+            return FindEntityWithStats(obj.transform.parent.gameObject);
         }
     }
 }

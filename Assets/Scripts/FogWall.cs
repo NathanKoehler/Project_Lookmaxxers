@@ -16,7 +16,6 @@ public class FogWall : MonoBehaviour
 
     void Update() 
     {
-        Debug.Log(Mike.currentState);
         if(Mike.isDead) {
             Destroy(this.gameObject);
         }
@@ -26,7 +25,10 @@ public class FogWall : MonoBehaviour
         }
     }
 
-    void OnTriggerExit() {
-        real.enabled = true;
+    void OnTriggerExit(Collider other) {
+        if (!real.enabled && other.gameObject.tag == "Player")
+        {
+            real.enabled = true;
+        }
     }
 }
