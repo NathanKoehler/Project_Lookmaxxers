@@ -16910,6 +16910,11 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 3893294199639930361}
+    - target: {fileID: 9091824401903288597, guid: 19e33852088619e499a596b39654976b,
+        type: 3}
+      propertyPath: maxDetectionRange
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9091824401903288598, guid: 19e33852088619e499a596b39654976b,
         type: 3}
       propertyPath: m_Radius
