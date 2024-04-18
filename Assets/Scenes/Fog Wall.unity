@@ -17941,6 +17941,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Message
       objectReference: {fileID: 0}
+    - target: {fileID: 603380786350178350, guid: f91384a84ce7ce348b2ba4fa9132032f,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 603380786350178350, guid: f91384a84ce7ce348b2ba4fa9132032f,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 603380786350178350, guid: f91384a84ce7ce348b2ba4fa9132032f,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 603380786350178351, guid: f91384a84ce7ce348b2ba4fa9132032f,
         type: 3}
       propertyPath: UIText

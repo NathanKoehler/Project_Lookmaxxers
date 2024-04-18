@@ -21,7 +21,7 @@ public class FogWall : MonoBehaviour
             Destroy(this.gameObject);
         }
         if(player.isDead) {
-            Mike.currentState = mikeAi.State.Idle;
+            Mike.GoIdle();
             real.enabled = false;
         }
     }

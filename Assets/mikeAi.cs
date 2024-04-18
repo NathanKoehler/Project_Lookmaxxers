@@ -263,6 +263,11 @@ public class mikeAi : MonoBehaviour, IEntityStats
         ladder.GetComponent<ladder>().moveLadder();
     }
 
+    public void GoIdle() 
+    {
+        ChangeState(State.Idle);
+    }
+
 
 
 }
