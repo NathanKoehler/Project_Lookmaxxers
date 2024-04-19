@@ -8,6 +8,8 @@ public class FogWall : MonoBehaviour
     [SerializeField] private mikeAi Mike;
     [SerializeField] private CharacterStats player;
 
+    [SerializeField] private AudioClip enterSFX;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +31,8 @@ public class FogWall : MonoBehaviour
         if (!real.enabled && other.gameObject.tag == "Player")
         {
             real.enabled = true;
+            SoundManager.instance.PlaySoundClip(enterSFX, transform, 1f);
         }
     }
+
 }

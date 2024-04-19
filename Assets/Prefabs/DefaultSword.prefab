@@ -52,6 +52,8 @@ MonoBehaviour:
   againstTag: Enemy
   damage: 10
   staminaCost: 0
+  weaponMiss: {fileID: 8300000, guid: 0923e7e9217d82946af162c5eccd89f4, type: 3}
+  weaponHit: {fileID: 8300000, guid: d47242449ecdaec459fbbb391dfe28ac, type: 3}
   magicProj: {fileID: 0}
 --- !u!54 &758900086712462919
 Rigidbody:

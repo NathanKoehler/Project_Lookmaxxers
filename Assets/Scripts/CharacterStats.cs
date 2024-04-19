@@ -48,6 +48,15 @@ public class CharacterStats : IEntityStats
     public GameObject vfxSlashObj;
     public GameObject slashRoot;
 
+    [SerializeField] private AudioClip dodgeSFX;
+    [SerializeField] private AudioClip sprintSFX;
+    [SerializeField] private AudioClip hurtSFX;
+    [SerializeField] private AudioClip healSFX;
+
+    private bool isSprintSFX;
+    private float time;
+    private float maxTime = 2f;
+
     void Awake()
     {
         weaponScript = weaponRoot.GetComponent<WeaponScript>();
@@ -155,6 +164,20 @@ public class CharacterStats : IEntityStats
             {
                 staminaRegenDelayTimer = 0;
                 curStamina -= (3.0f * Time.deltaTime);
+
+                if (!isSprintSFX)
+                {
+                    SoundManager.instance.PlaySoundClip(sprintSFX, transform, 1f);
+                    isSprintSFX = true;
+                    time = maxTime;
+                }
+                if (time >= 0)
+                {
+                    time -= Time.deltaTime;
+                } else
+                {
+                    isSprintSFX = false;
+                }
             }
         }
 
@@ -204,6 +227,8 @@ public class CharacterStats : IEntityStats
     public void OnRollBegin()
     {
         curStamina -= 10;
+        staminaRegenDelayTimer = 0;
+        SoundManager.instance.PlaySoundClip(dodgeSFX, transform, 1f);
     }
 
     public override void OnAttackBegin()
@@ -212,6 +237,7 @@ public class CharacterStats : IEntityStats
         weaponScript.OnAttackBegin();
         curStamina -= weaponScript.GetStaminaCost();
         staminaRegenDelayTimer = 0;
+        SoundManager.instance.PlayAttackSound();
         if (weaponScript.currSelectedWeapon != 2)
         {
             vfxSlashActive();
@@ -263,6 +289,7 @@ public class CharacterStats : IEntityStats
                 curHealth = 100;
             }
             flaskNum -= 1;
+            SoundManager.instance.PlaySoundClip(healSFX, transform, 1f);
         }
     }
 
@@ -271,7 +298,6 @@ public class CharacterStats : IEntityStats
         flaskNum = maxFlasks;
         curHealth = maxHealth;
         curBonfire = bonfire.gameObject;
-
     }
 
     private void StaggerBehaviour()
@@ -282,6 +308,7 @@ public class CharacterStats : IEntityStats
     public override void StartStagger()
     {
         isStaggered = true;
+        SoundManager.instance.PlaySoundClip(hurtSFX, transform, 1f);
     }
     public override void EndStagger()
     {

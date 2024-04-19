@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Bonfire : MonoBehaviour
 {
-
     private GameObject FindPlayerWithStats(GameObject obj)
     {
         CharacterStats stats = obj.GetComponent<CharacterStats>();
@@ -23,5 +22,10 @@ public class Bonfire : MonoBehaviour
             GameObject player = FindPlayerWithStats(other.gameObject);
             player.GetComponent<CharacterStats>().Rest(this);
         }
+    }
+
+    private void Update()
+    {
+        
     }
 }
