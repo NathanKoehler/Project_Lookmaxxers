@@ -3160,12 +3160,6 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!223 &560356360 stripped
-Canvas:
-  m_CorrespondingSourceObject: {fileID: 5107519712212943259, guid: db7f0b1cfa2e4ae44b758391df364711,
-    type: 3}
-  m_PrefabInstance: {fileID: 758342388}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &561927161 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6106840156074917557, guid: aaee2d180859ad9409f32c54b353d62d,
@@ -14455,7 +14449,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDead: 0
-  staminaRegenRate: 15
+  staminaRegenRate: 20
   staminaRegenDelay: 0.7
   staminaRegenDelayTimer: 0
   curHealth: 100
@@ -14464,12 +14458,12 @@ MonoBehaviour:
   maxFlasks: 3
   HSlider: {fileID: 754786567}
   SSlider: {fileID: 899685808}
-  StaminaAlert: {fileID: 560356360}
+  StaminaAlert: {fileID: 560356357}
   FlaskNumDisplay: {fileID: 619461834}
   curBonfire: {fileID: 1838330163}
   staggerThreshold: 0
   curStamina: 100
-  maxStamina: 100
+  maxStamina: 50
   isRolling: 0
   isAttacking: 0
   isStaggered: 0
