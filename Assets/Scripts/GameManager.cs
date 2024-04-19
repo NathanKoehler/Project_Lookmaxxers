@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public GameObject GameUI;
     public CanvasGroup controls;
     public CanvasGroup pauseMenu;
-    public Canvas staminaAlert;
+    public CanvasGroup staminaAlert;
 
     public static GameManager Instance
     {
