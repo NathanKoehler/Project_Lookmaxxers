@@ -21,6 +21,7 @@ public class CharacterStats : IEntityStats
     [SerializeField] private int maxFlasks;
     [SerializeField] private Scrollbar HSlider;
     [SerializeField] private Scrollbar SSlider;
+    [SerializeField] private CanvasGroup StaminaAlert;
     [SerializeField] private TMP_Text FlaskNumDisplay;
     [SerializeField] private GameObject curBonfire;
     [SerializeField] private float staggerThreshold;
@@ -64,6 +65,10 @@ public class CharacterStats : IEntityStats
         weaponScript = weaponRoot.GetComponent<WeaponScript>();
         sai = GetComponent<StarterAssetsInputs>();
         staggerThreshold = defaultStaggerThreshold;
+        StaminaAlert.interactable = false;
+        StaminaAlert.blocksRaycasts = false;
+        StaminaAlert.alpha = 0;
+        StaminaAlert.gameObject.SetActive(false);
     }
 
     //public bool spendStamina(float spentValue)
@@ -131,6 +136,17 @@ public class CharacterStats : IEntityStats
             {
                 staminaRegenDelayTimer += Time.deltaTime;
             }
+        }
+
+        if (!(curStamina > weaponScript.GetStaminaCost()))
+        {
+            StaminaAlert.gameObject.SetActive(true);
+            StaminaAlert.alpha = 1;
+        } 
+        else
+        {
+            StaminaAlert.gameObject.SetActive(false);
+            StaminaAlert.alpha = 0;
         }
 
         if (isSprinting && !isRolling)

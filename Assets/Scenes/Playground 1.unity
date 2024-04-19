@@ -3142,6 +3142,30 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 5, y: 5, z: 4.9999995}
   m_Center: {x: 0, y: 0, z: -0.000015258789}
+--- !u!1 &560356355 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2132264395859669818, guid: db7f0b1cfa2e4ae44b758391df364711,
+    type: 3}
+  m_PrefabInstance: {fileID: 758342388}
+  m_PrefabAsset: {fileID: 0}
+--- !u!225 &560356357
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 560356355}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!223 &560356360 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 5107519712212943259, guid: db7f0b1cfa2e4ae44b758391df364711,
+    type: 3}
+  m_PrefabInstance: {fileID: 758342388}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &561927161 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6106840156074917557, guid: aaee2d180859ad9409f32c54b353d62d,
@@ -4310,6 +4334,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 758342390, guid: db7f0b1cfa2e4ae44b758391df364711, type: 3}
+    - {fileID: 6779429717626241815, guid: db7f0b1cfa2e4ae44b758391df364711, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: db7f0b1cfa2e4ae44b758391df364711, type: 3}
 --- !u!1 &763892523 stripped
 GameObject:
@@ -5348,6 +5373,7 @@ MonoBehaviour:
   GameUI: {fileID: 177570635}
   controls: {fileID: 1649293124}
   pauseMenu: {fileID: 898111541}
+  staminaAlert: {fileID: 0}
 --- !u!1 &878820018 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1890486966602451953, guid: aaee2d180859ad9409f32c54b353d62d,
@@ -14428,6 +14454,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de37a9180a5dedb41b0e68fdd5af2619, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDead: 0
   staminaRegenRate: 15
   staminaRegenDelay: 0.7
   staminaRegenDelayTimer: 0
@@ -14437,6 +14464,7 @@ MonoBehaviour:
   maxFlasks: 3
   HSlider: {fileID: 754786567}
   SSlider: {fileID: 899685808}
+  StaminaAlert: {fileID: 560356360}
   FlaskNumDisplay: {fileID: 619461834}
   curBonfire: {fileID: 1838330163}
   staggerThreshold: 0
@@ -14445,7 +14473,6 @@ MonoBehaviour:
   isRolling: 0
   isAttacking: 0
   isStaggered: 0
-  isDead: 0
   isSprinting: 0
   defaultStaggerThreshold: 8
   weaponRoot: {fileID: 603739222}
