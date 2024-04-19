@@ -4389,6 +4389,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2996769589968403320, guid: db7f0b1cfa2e4ae44b758391df364711,
+        type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2996769590238735847, guid: db7f0b1cfa2e4ae44b758391df364711,
         type: 3}
       propertyPath: m_Name
@@ -4500,6 +4505,11 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2996769591216305993, guid: db7f0b1cfa2e4ae44b758391df364711,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3012978856253093683, guid: db7f0b1cfa2e4ae44b758391df364711,
         type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -7833,6 +7843,37 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 6.25, y: 5, z: 5}
   m_Center: {x: 0.6250019, y: -5.920697e-16, z: 0.00000023841856}
+--- !u!1 &1406123241 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2996769589968403322, guid: db7f0b1cfa2e4ae44b758391df364711,
+    type: 3}
+  m_PrefabInstance: {fileID: 758342388}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1406123243 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2996769589968403320, guid: db7f0b1cfa2e4ae44b758391df364711,
+    type: 3}
+  m_PrefabInstance: {fileID: 758342388}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1406123241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1406123245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1406123241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f216b4718e71964d86b730b46d08484, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UIText: {fileID: 1406123243}
 --- !u!1 &1409141593 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5194885134746896331, guid: aaee2d180859ad9409f32c54b353d62d,

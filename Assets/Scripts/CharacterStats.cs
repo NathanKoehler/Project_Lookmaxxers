@@ -52,6 +52,7 @@ public class CharacterStats : IEntityStats
     [SerializeField] private AudioClip sprintSFX;
     [SerializeField] private AudioClip hurtSFX;
     [SerializeField] private AudioClip healSFX;
+    [SerializeField] private AudioClip restSFX;
 
     private bool isSprintSFX;
     private float time;
@@ -298,6 +299,7 @@ public class CharacterStats : IEntityStats
         flaskNum = maxFlasks;
         curHealth = maxHealth;
         curBonfire = bonfire.gameObject;
+        SoundManager.instance.PlaySoundClip(restSFX, transform, 2f);
     }
 
     private void StaggerBehaviour()

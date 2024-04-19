@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Bonfire : MonoBehaviour
 {
+
     private GameObject FindPlayerWithStats(GameObject obj)
     {
         CharacterStats stats = obj.GetComponent<CharacterStats>();
@@ -17,15 +18,25 @@ public class Bonfire : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider other) {
-        if (other.tag == "Player") {
-            GameObject player = FindPlayerWithStats(other.gameObject);
-            player.GetComponent<CharacterStats>().Rest(this);
+    void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            TextDisplayHandler.instance.updateText("");
         }
     }
 
-    private void Update()
+    private void OnTriggerStay(Collider other)
     {
-        
+        if (other.tag == "Player")
+        {
+            GameObject player = FindPlayerWithStats(other.gameObject);
+            TextDisplayHandler.instance.updateText("Press [F] to activate checkpoint");
+
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                player.GetComponent<CharacterStats>().Rest(this);
+            }
+        }
     }
 }
