@@ -22,6 +22,7 @@ public class EnemyAIScript : MonoBehaviour
     public GameObject target;
     public Vector3 targetFuturePosition;
 
+    private Rigidbody rb;
     private EnemyStats stats;
     private bool hasSearched = true;
     private bool isWaiting = false;
@@ -30,8 +31,12 @@ public class EnemyAIScript : MonoBehaviour
     NavMeshAgent agent;
     Animator animator;
 
+    [SerializeField]
     AIState aiState;
     int currentWaypoint = -1;
+
+    private Vector2 Velocity;
+    private Vector2 SmoothDeltaPosition;
 
     private void Awake()
     {
@@ -43,15 +48,21 @@ public class EnemyAIScript : MonoBehaviour
             waypoints = new GameObject[1];
             waypoints[0] = waypoint;
         }
+
+        animator = GetComponent<Animator>();
+        agent = GetComponent<NavMeshAgent>();
+
+        animator.applyRootMotion = true;
+        agent.updatePosition = false;
+        agent.updateRotation = true;
     }
 
 
     // Start is called before the first frame update
     void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
-        animator = GetComponent<Animator>();
         stats = GetComponent<EnemyStats>();
+        rb = GetComponent<Rigidbody>();
 
         aiState = AIState.PATROL;
         setNextWayPoint();
@@ -65,13 +76,13 @@ public class EnemyAIScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        animator.SetFloat("vely", agent.velocity.magnitude / agent.speed);
+
+        SynchronizeAnimatorAndAgent();
 
         switch (aiState)
         {
             case AIState.PATROL:
                 animator.SetBool("aggressive", false);
-                animator.SetBool("attack", false);
                 if (!isWaiting && agent.remainingDistance < 1f && !agent.pathPending)
                 {
                     isWaiting = true;
@@ -84,44 +95,120 @@ public class EnemyAIScript : MonoBehaviour
                 }
                 break;
             case AIState.SEEK:
-                animator.SetBool("aggressive", true);
-                animator.SetBool("attack", false);
                 setDestinationToPredicted();
 
                 if (stats.curStamina > stats.GetWeaponScript().staminaCost)
                 {
-                    if (!stats.isStaggered && Vector3.Distance(transform.position, target.transform.position) < 1.8f && !agent.pathPending)
+                    if (agent.remainingDistance < 1.8f && !agent.pathPending)
                     {
                         aiState = AIState.ATTACK;
-                        animator.SetBool("attack", true);
-                        // aiState = AIState.PATROL;
-                        // setNextWayPoint();
+                        stats.isAttacking = true;
+                        if (Random.Range(0, 2) == 0)
+                        {
+                            animator.SetTrigger("attack1");
+                        }
+                        else
+                        {
+                            animator.SetTrigger("attack2");
+                        }
                     }
-                } else
-                {
-                    stats.RerollRetreatThreshold();
-                    aiState = AIState.RETREAT;
-                    agent.updateRotation = false;
                 }
                 break;
             case AIState.RETREAT:
-                animator.SetBool("attack", false);
-                if (stats.curStamina >= stats.retreatThreshold)
+                setDestinationToPredicted();
+                if ((stats.isStaggered && Random.Range(0, 3) > 0) || stats.curStamina >= stats.retreatThreshold)
                 {
-                    agent.updateRotation = true;
+                    animator.SetBool("retreat", false);
                     aiState = AIState.SEEK;
                 }
-                Vector3 directionAwayFromTarget = transform.position - target.transform.position;
-                Vector3 retreatPosition = transform.position + directionAwayFromTarget.normalized * stats.retreatDistance;
-                agent.speed = stats.retreatSpeed;
-                agent.SetDestination(retreatPosition);
-                transform.rotation = Quaternion.LookRotation(new Vector3(-directionAwayFromTarget.x, 0, -directionAwayFromTarget.z));
+                Vector3 backward = -transform.forward;
+
+                Vector3 rayOrigin = transform.position;
+
+                RaycastHit hit;
+
+                if (Physics.Raycast(rayOrigin, backward, out hit, 1.2f))
+                {
+                    if (hit.transform.gameObject.layer == 6)
+                    {
+                        animator.SetBool("retreat", false);
+                        aiState = AIState.SEEK;
+                    }
+                }
+
+                //Vector3 directionAwayFromTarget = transform.position - target.transform.position;
+                //Vector3 retreatPosition = transform.position + directionAwayFromTarget.normalized * stats.retreatDistance;
+                ////agent.speed = stats.retreatSpeed;
+                //agent.SetDestination(retreatPosition);
+                //transform.rotation = Quaternion.LookRotation(new Vector3(-directionAwayFromTarget.x, 0, -directionAwayFromTarget.z));
                 break;
             case AIState.ATTACK:
-                setDestinationToPredicted();
+                if (!stats.isAttacking)
+                {
+                    stats.RerollRetreatThreshold();
+                    if (stats.curStamina < stats.retreatThreshold)
+                    {
+                        aiState = AIState.RETREAT;
+                        animator.SetBool("retreat", true);
+                    }
+                    else
+                    {
+                        aiState = AIState.SEEK;
+                    }
+                }
                 break;
             default:
                 break;
+        }
+    }
+
+    private void OnAnimatorMove()
+    {
+        Vector3 rootPosition = animator.rootPosition;
+        rootPosition.y = agent.nextPosition.y;
+        transform.position = rootPosition;
+        agent.nextPosition = rootPosition;
+    }   
+
+    private void SynchronizeAnimatorAndAgent()
+    {
+        Vector3 worldDeltaPosition = agent.nextPosition - transform.position;
+        worldDeltaPosition.y = 0;
+
+        float dx = Vector3.Dot(transform.right, worldDeltaPosition);
+        float dy = Vector3.Dot(transform.forward, worldDeltaPosition);
+        Vector2 deltaPosition = new Vector2(dx, dy);
+
+        float smooth = Mathf.Min(1.0f, Time.deltaTime / 0.1f);
+        SmoothDeltaPosition = Vector2.Lerp(SmoothDeltaPosition, deltaPosition, smooth);
+
+        Velocity = SmoothDeltaPosition / Time.deltaTime;
+        if (agent.remainingDistance <= agent.stoppingDistance)
+        {
+            Velocity = Vector2.Lerp(
+                Vector2.zero, 
+                Velocity, 
+                agent.remainingDistance / agent.stoppingDistance
+            );
+        }
+
+        bool shouldMove = Velocity.magnitude > 0.5f && agent.remainingDistance > agent.stoppingDistance; 
+
+        animator.SetBool("move", shouldMove);
+
+        animator.SetFloat("locamotion", Velocity.magnitude);
+        //if (aiState == AIState.RETREAT)
+        //{
+        //    animator.SetFloat("locamotion", -Velocity.magnitude);
+        //} else
+        //{
+        //    animator.SetFloat("locamotion", Velocity.magnitude);
+        //}
+
+        float deltaMagnitude = worldDeltaPosition.magnitude;
+        if (deltaMagnitude > agent.radius / 2f)
+        {
+            transform.position = Vector3.Lerp(animator.rootPosition, agent.nextPosition, smooth);
         }
     }
 

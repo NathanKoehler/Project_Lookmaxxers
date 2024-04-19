@@ -22,6 +22,8 @@ public class EnemyStats : IEntityStats
     private float staggerThreshold;
 
     [HideInInspector]
+    public bool isAttacking = false;
+    [HideInInspector]
     public bool isStaggered = false;
     [HideInInspector]
     public float retreatThreshold;
@@ -35,6 +37,7 @@ public class EnemyStats : IEntityStats
     public float retreatSpeed = 1;
     public float retreatDistance = 2;
     public float defaultStaggerThreshold = 8f;
+
 
     // Start is called before the first frame update
     void Start()
@@ -97,7 +100,8 @@ public class EnemyStats : IEntityStats
     public override void OnAttackEnd()
     {
         weaponScript.OnAttackEnd();
-    }
+        isAttacking = false;
+    } 
 
     public WeaponScript GetWeaponScript()
     {
@@ -106,7 +110,7 @@ public class EnemyStats : IEntityStats
     
     public void RerollRetreatThreshold()
     {
-        retreatThreshold = Random.Range(0, maxStamina / 1.5f);
+        retreatThreshold = Random.Range(maxStamina / 3f, maxStamina);
     }
 
     public override void StartStagger()
