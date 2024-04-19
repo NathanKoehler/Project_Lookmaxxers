@@ -18524,6 +18524,7 @@ MonoBehaviour:
   sprintSFX: {fileID: 8300000, guid: 90f4be044d00fc044a788e027652a1f8, type: 3}
   hurtSFX: {fileID: 8300000, guid: 299847f68966c9a4a9c27b292e9b56c0, type: 3}
   healSFX: {fileID: 8300000, guid: 26db21630fc14be48a04671f62d93f98, type: 3}
+  restSFX: {fileID: 8300000, guid: 55f7fd5e2e37fb7459e7489412d77ddc, type: 3}
 --- !u!1 &1769497312 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -3258794338224817200, guid: aaee2d180859ad9409f32c54b353d62d,
