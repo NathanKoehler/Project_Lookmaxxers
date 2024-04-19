@@ -158,6 +158,22 @@ public class CharacterStats : IEntityStats
             }
         }
 
+        if (isAttacking)
+        {
+            tController.SprintSpeed = 1;
+            tController.MoveSpeed = 1;
+        }
+        else
+        {
+            tController.SprintSpeed = 6;
+            tController.MoveSpeed = 2;
+        }
+
+        if (isStaggered)
+        {
+            tController.SprintSpeed = 0;
+            tController.MoveSpeed = 0;
+        }
 
         // if (!isRolling && !isStaggered && !isAttacking && Input.GetKeyDown(KeyCode.Mouse0))
         // {
