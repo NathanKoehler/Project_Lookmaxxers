@@ -919,6 +919,12 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 5, y: 5, z: 5.0000024}
   m_Center: {x: 0, y: -0.0000019073486, z: 0.0000076293945}
+--- !u!1 &80840782 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8685120424479075608, guid: db7f0b1cfa2e4ae44b758391df364711,
+    type: 3}
+  m_PrefabInstance: {fileID: 758342388}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &94978561 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7773401750034037419, guid: 07518a951732c714ead7eece03f78422,
@@ -4212,6 +4218,21 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3012978856253093683, guid: db7f0b1cfa2e4ae44b758391df364711,
+        type: 3}
+      propertyPath: mike
+      value: 
+      objectReference: {fileID: 1683527375}
+    - target: {fileID: 3012978856253093683, guid: db7f0b1cfa2e4ae44b758391df364711,
+        type: 3}
+      propertyPath: goal1
+      value: 
+      objectReference: {fileID: 898719678}
+    - target: {fileID: 3012978856253093683, guid: db7f0b1cfa2e4ae44b758391df364711,
+        type: 3}
+      propertyPath: goal2
+      value: 
+      objectReference: {fileID: 80840782}
     - target: {fileID: 3894381956866695057, guid: db7f0b1cfa2e4ae44b758391df364711,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -4271,6 +4292,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -110
+      objectReference: {fileID: 0}
+    - target: {fileID: 6712837227094855944, guid: db7f0b1cfa2e4ae44b758391df364711,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6712837227094855944, guid: db7f0b1cfa2e4ae44b758391df364711,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -194
       objectReference: {fileID: 0}
     - target: {fileID: 8018599949398939994, guid: db7f0b1cfa2e4ae44b758391df364711,
         type: 3}
@@ -5383,7 +5414,7 @@ MonoBehaviour:
   GameUI: {fileID: 177570635}
   controls: {fileID: 1649293124}
   pauseMenu: {fileID: 898111541}
-  staminaAlert: {fileID: 0}
+  staminaAlert: {fileID: 560356357}
 --- !u!1 &878820018 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1890486966602451953, guid: aaee2d180859ad9409f32c54b353d62d,
@@ -5463,6 +5494,12 @@ BoxCollider:
 --- !u!225 &898111541 stripped
 CanvasGroup:
   m_CorrespondingSourceObject: {fileID: 2996769591216305992, guid: db7f0b1cfa2e4ae44b758391df364711,
+    type: 3}
+  m_PrefabInstance: {fileID: 758342388}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &898719678 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2675412900177650337, guid: db7f0b1cfa2e4ae44b758391df364711,
     type: 3}
   m_PrefabInstance: {fileID: 758342388}
   m_PrefabAsset: {fileID: 0}
@@ -14490,7 +14527,7 @@ MonoBehaviour:
   FlaskNumDisplay: {fileID: 619461834}
   curBonfire: {fileID: 1838330163}
   staggerThreshold: 0
-  curStamina: 100
+  curStamina: 50
   maxStamina: 50
   isRolling: 0
   isAttacking: 0
