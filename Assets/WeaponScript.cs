@@ -14,7 +14,7 @@ public class WeaponScript : MonoBehaviour
     public string againstTag;
     public int damage;
     public int staminaCost = 0;
-
+    public bool heavyAttacking;
     public GameObject magicProj;
     // Start is called before the first frame update
     void Start()
@@ -22,6 +22,7 @@ public class WeaponScript : MonoBehaviour
         hitEnemies = new List<int>();
         weaponCollider = GetComponentInChildren<Collider>();
         weaponCollider.enabled = false;
+        heavyAttacking = false; 
     }
 
     // Update is called once per frame
@@ -72,7 +73,13 @@ public class WeaponScript : MonoBehaviour
             {
                 hitEnemies.Add(enemy.GetInstanceID());
                 IEntityStats stats = enemy.GetComponent<IEntityStats>();
-                stats.TakeDamage(damage);
+                int damageToEnemy = damage;
+                if (heavyAttacking)
+                {
+                    damageToEnemy += 5;
+                    print("heavy");
+                }
+                stats.TakeDamage(damageToEnemy);
             }
         }
     }
@@ -85,7 +92,13 @@ public class WeaponScript : MonoBehaviour
     public int HitEnemy(int enemyID)
     {
         hitEnemies.Append(enemyID);
-        return damage;
+        int damageToEnemy = damage;
+        if (heavyAttacking)
+        {
+            damageToEnemy *= 2;
+            print("heavy");
+        }
+        return damageToEnemy;
     }
 
 
@@ -101,12 +114,17 @@ public class WeaponScript : MonoBehaviour
             Vector3 projDir = (Quaternion.Euler(0.0f, wielder.transform.eulerAngles.y, 0.0f) * Vector3.forward).normalized;
             Debug.Log(projDir);
             proj.GetComponent<ProjectileScript>().SetDirection(projDir);
+            if (heavyAttacking)
+            {
+                proj.GetComponent<SphereCollider>().radius *= 2;
+            }
         }
     }
 
     public void OnAttackEnd()
     {
         weaponCollider.enabled = false;
+        heavyAttacking = false; 
     }
 
     public float GetStaminaCost()
