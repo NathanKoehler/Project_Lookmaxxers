@@ -969,6 +969,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1486099415, guid: 07518a951732c714ead7eece03f78422, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1486099416, guid: 07518a951732c714ead7eece03f78422, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1486099420, guid: 07518a951732c714ead7eece03f78422, type: 3}
+      propertyPath: fake
+      value: 
+      objectReference: {fileID: 850358685}
     - target: {fileID: 1486099420, guid: 07518a951732c714ead7eece03f78422, type: 3}
       propertyPath: player
       value: 
@@ -977,6 +989,10 @@ PrefabInstance:
       propertyPath: enterSFX
       value: 
       objectReference: {fileID: 8300000, guid: 240072a8253bb8e46ab826894360ac1b, type: 3}
+    - target: {fileID: 1486099421, guid: 07518a951732c714ead7eece03f78422, type: 3}
+      propertyPath: m_Center.z
+      value: -2.71
+      objectReference: {fileID: 0}
     - target: {fileID: 1570645400674006884, guid: 07518a951732c714ead7eece03f78422,
         type: 3}
       propertyPath: player
@@ -986,6 +1002,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: mike_bossfight
+      objectReference: {fileID: 0}
+    - target: {fileID: 7773401750034037416, guid: 07518a951732c714ead7eece03f78422,
+        type: 3}
+      propertyPath: m_Radius
+      value: 16.9
       objectReference: {fileID: 0}
     - target: {fileID: 7773401750034037417, guid: 07518a951732c714ead7eece03f78422,
         type: 3}
@@ -5237,6 +5258,34 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 5, y: 5, z: 4.9999995}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &850358682 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1486099415, guid: 07518a951732c714ead7eece03f78422,
+    type: 3}
+  m_PrefabInstance: {fileID: 109025698}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &850358685 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 1486099421, guid: 07518a951732c714ead7eece03f78422,
+    type: 3}
+  m_PrefabInstance: {fileID: 109025698}
+  m_PrefabAsset: {fileID: 0}
+--- !u!208 &850358689
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 850358682}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1001 &850795532
 PrefabInstance:
   m_ObjectHideFlags: 0
