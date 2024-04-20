@@ -112,7 +112,8 @@ namespace StarterAssets
         private bool _hasAnimator;
 
         [SerializeField] private float inputX;
-        [SerializeField] private float inputY; 
+        [SerializeField] private float inputY;
+        [HideInInspector] public bool isMoving = false;
         private bool IsCurrentDeviceMouse
         {
             get
@@ -262,11 +263,16 @@ namespace StarterAssets
 
             // normalise input direction
             Vector3 inputDirection = new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
-            if (_input.move != Vector2.zero) { inputX = _input.move.x; inputY = _input.move.y; } 
+            if (_input.move != Vector2.zero) 
+            {
+                isMoving = true;
+
+                inputX = _input.move.x; 
+                inputY = _input.move.y; 
+            
             // note: Vector2's != operator uses approximation so is not floating point error prone, and is cheaper than magnitude
             // if there is a move input rotate player when the player is moving
-            if (_input.move != Vector2.zero)
-            {
+            
                 _targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg +
                                   _mainCamera.transform.eulerAngles.y;
                 float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity,
@@ -274,6 +280,9 @@ namespace StarterAssets
 
                 // rotate to face input direction relative to camera position
                 transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
+            } else
+            {
+                isMoving = false;
             }
 
 
