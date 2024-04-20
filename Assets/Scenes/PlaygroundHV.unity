@@ -4072,14 +4072,54 @@ PrefabInstance:
       propertyPath: m_OverrideSorting
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2278036158421360766, guid: db7f0b1cfa2e4ae44b758391df364711,
+        type: 3}
+      propertyPath: m_Transition
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2278036158676068426, guid: db7f0b1cfa2e4ae44b758391df364711,
+        type: 3}
+      propertyPath: m_Transition
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2278036158676068426, guid: db7f0b1cfa2e4ae44b758391df364711,
+        type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2278036160147972228, guid: db7f0b1cfa2e4ae44b758391df364711,
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2278036160147972229, guid: db7f0b1cfa2e4ae44b758391df364711,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.06557059
+      objectReference: {fileID: 0}
+    - target: {fileID: 2278036160147972229, guid: db7f0b1cfa2e4ae44b758391df364711,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2278036160147972229, guid: db7f0b1cfa2e4ae44b758391df364711,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2278036160168061104, guid: db7f0b1cfa2e4ae44b758391df364711,
         type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2278036160168061105, guid: db7f0b1cfa2e4ae44b758391df364711,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.8039216
+      objectReference: {fileID: 0}
+    - target: {fileID: 2278036160168061105, guid: db7f0b1cfa2e4ae44b758391df364711,
+        type: 3}
+      propertyPath: m_Color.r
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2996769590238735847, guid: db7f0b1cfa2e4ae44b758391df364711,

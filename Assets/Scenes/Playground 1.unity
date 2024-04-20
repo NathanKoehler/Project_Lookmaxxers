@@ -3462,6 +3462,7 @@ MonoBehaviour:
   againstTag: Enemy
   damage: 10
   staminaCost: 10
+  heavyAttacking: 0
   magicProj: {fileID: 3599689716510974525, guid: 5878f0ad2ca5dce4692dbe79ed805d85,
     type: 3}
 --- !u!54 &603739225
@@ -4342,14 +4343,59 @@ PrefabInstance:
       propertyPath: m_OverrideSorting
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2278036158421360766, guid: db7f0b1cfa2e4ae44b758391df364711,
+        type: 3}
+      propertyPath: m_Transition
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2278036158421360766, guid: db7f0b1cfa2e4ae44b758391df364711,
+        type: 3}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2278036158676068426, guid: db7f0b1cfa2e4ae44b758391df364711,
+        type: 3}
+      propertyPath: m_Transition
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2278036158676068426, guid: db7f0b1cfa2e4ae44b758391df364711,
+        type: 3}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2278036160147972228, guid: db7f0b1cfa2e4ae44b758391df364711,
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2278036160147972229, guid: db7f0b1cfa2e4ae44b758391df364711,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2278036160147972229, guid: db7f0b1cfa2e4ae44b758391df364711,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.9622642
+      objectReference: {fileID: 0}
+    - target: {fileID: 2278036160147972229, guid: db7f0b1cfa2e4ae44b758391df364711,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.23607363
+      objectReference: {fileID: 0}
     - target: {fileID: 2278036160168061104, guid: db7f0b1cfa2e4ae44b758391df364711,
         type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2278036160168061105, guid: db7f0b1cfa2e4ae44b758391df364711,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.8039216
+      objectReference: {fileID: 0}
+    - target: {fileID: 2278036160168061105, guid: db7f0b1cfa2e4ae44b758391df364711,
+        type: 3}
+      propertyPath: m_Color.r
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2996769590238735847, guid: db7f0b1cfa2e4ae44b758391df364711,
