@@ -161,7 +161,7 @@ public class CharacterStats : IEntityStats
 
         if (isSprinting && !isRolling)
         {
-            if (curStamina >= 0)
+            if (curStamina >= 0 && tController.isMoving)
             {
                 staminaRegenDelayTimer = 0;
                 curStamina -= (3.0f * Time.deltaTime);
