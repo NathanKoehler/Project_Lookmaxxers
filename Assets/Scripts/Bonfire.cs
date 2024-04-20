@@ -34,11 +34,17 @@ public class Bonfire : MonoBehaviour
         if (other.tag == "Player")
         {
             GameObject player = FindPlayerWithStats(other.gameObject);
-            TextDisplayHandler.instance.updateText("Press [F] to activate checkpoint");
-
-            if (Input.GetKeyDown(KeyCode.F))
+            if (transform.GetChild(0).gameObject.GetComponent<BonfireCheck>().enemyNear > 0)
             {
-                player.GetComponent<CharacterStats>().Rest(this);
+                TextDisplayHandler.instance.updateText("ENEMIES NEARBY");
+            } else
+            {
+                TextDisplayHandler.instance.updateText("Press [F] to activate checkpoint");
+
+                if (Input.GetKeyDown(KeyCode.F))
+                {
+                    player.GetComponent<CharacterStats>().Rest(this);
+                }
             }
         }
     }
