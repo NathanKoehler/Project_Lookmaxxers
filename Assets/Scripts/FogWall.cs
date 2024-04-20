@@ -5,6 +5,7 @@ using UnityEngine;
 public class FogWall : MonoBehaviour
 {
     public Collider real;
+    public Collider fake; 
     [SerializeField] private mikeAi Mike;
     [SerializeField] private CharacterStats player;
 
@@ -14,6 +15,7 @@ public class FogWall : MonoBehaviour
     void Start()
     {
         real.enabled = false;
+        fake.enabled = true; 
     }
 
     void Update() 
@@ -24,6 +26,7 @@ public class FogWall : MonoBehaviour
         if(player.isDead) {
             Mike.GoIdle();
             real.enabled = false;
+            fake.enabled = true; 
         }
     }
 
@@ -31,6 +34,7 @@ public class FogWall : MonoBehaviour
         if (!real.enabled && other.gameObject.tag == "Player")
         {
             real.enabled = true;
+            fake.enabled = false; 
             SoundManager.instance.PlaySoundClip(enterSFX, transform, 1f);
         }
     }
