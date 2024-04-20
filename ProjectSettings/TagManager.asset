@@ -9,6 +9,7 @@ TagManager:
   - Attack
   - Boss
   - CubeTrigger
+  - FullEnemy
   layers:
   - Default
   - TransparentFX
