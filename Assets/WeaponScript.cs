@@ -114,6 +114,10 @@ public class WeaponScript : MonoBehaviour
             Vector3 projDir = (Quaternion.Euler(0.0f, wielder.transform.eulerAngles.y, 0.0f) * Vector3.forward).normalized;
             Debug.Log(projDir);
             proj.GetComponent<ProjectileScript>().SetDirection(projDir);
+            if (heavyAttacking)
+            {
+                proj.GetComponent<SphereCollider>().radius *= 2;
+            }
         }
     }
 

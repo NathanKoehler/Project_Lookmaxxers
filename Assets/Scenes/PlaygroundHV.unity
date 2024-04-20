@@ -3358,6 +3358,7 @@ MonoBehaviour:
   againstTag: Enemy
   damage: 10
   staminaCost: 10
+  heavyAttacking: 0
   magicProj: {fileID: 3599689716510974525, guid: 5878f0ad2ca5dce4692dbe79ed805d85,
     type: 3}
 --- !u!54 &603739225
@@ -15122,7 +15123,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &1933750201
 AudioSource:
   m_ObjectHideFlags: 0
