@@ -290,10 +290,6 @@ namespace StarterAssets
                 isMoving = false;
             }
 
-            Debug.Log("Move Speed: " + _MoveSpeed);
-            Debug.Log(targetSpeed);
-            Debug.Log(_speed);
-
 
             Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
 
@@ -493,7 +489,7 @@ namespace StarterAssets
                     _MoveSpeed = DefaultMoveSpeed;
                     _SprintSpeed = DefaultSprintSpeed;
                     break;
-                case "Sprinting":
+                case "Attacking":
                     _MoveSpeed = DefaultAttackingMoveSpeed;
                     _SprintSpeed = DefaultAttackingMoveSpeed;
                     break;

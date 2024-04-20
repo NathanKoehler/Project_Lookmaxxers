@@ -66,6 +66,7 @@ public class WeaponScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Collision detected " + other.gameObject.tag);
         if (other.gameObject.tag == againstTag)
         {
             GameObject enemy = FindEntityWithStats(other.gameObject);
@@ -80,6 +81,14 @@ public class WeaponScript : MonoBehaviour
                     print("heavy");
                 }
                 stats.TakeDamage(damageToEnemy);
+            }
+        }
+        else if (other.gameObject.tag == "Breakable")
+        {
+            BreakablePropScript breakableScript = other.transform.parent.GetComponent<BreakablePropScript>();
+            if (!breakableScript.isBroken)
+            {
+                breakableScript.Break(other.ClosestPoint(transform.position));
             }
         }
     }
