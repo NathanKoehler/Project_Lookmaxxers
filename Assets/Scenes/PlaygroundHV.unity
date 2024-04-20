@@ -14243,7 +14243,7 @@ MonoBehaviour:
   FlaskNumDisplay: {fileID: 619461834}
   curBonfire: {fileID: 1838330163}
   staggerThreshold: 0
-  curStamina: 100
+  curStamina: 50
   maxStamina: 50
   isRolling: 0
   isAttacking: 0
@@ -17686,7 +17686,7 @@ GameObject:
   - component: {fileID: 6982812147933622151}
   m_Layer: 8
   m_Name: PlayerArmature
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

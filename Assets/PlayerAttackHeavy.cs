@@ -31,6 +31,7 @@ public class PlayerAttackHeavy : MonoBehaviour
         {
             animator.SetTrigger("heavyAttack");
             playerMetrics.weaponUsed[weaponScript.currSelectedWeapon]++;
+            characterStats.SetHeavyAttack();
         }
 
         // // Check if the left mouse button is pressed down
