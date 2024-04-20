@@ -16,10 +16,12 @@ namespace StarterAssets
     {
         [Header("Player")]
         [Tooltip("Move speed of the character in m/s")]
-        public float MoveSpeed = 2.0f;
+        public float DefaultMoveSpeed = 3.0f;
 
         [Tooltip("Sprint speed of the character in m/s")]
-        public float SprintSpeed = 5.335f;
+        public float DefaultSprintSpeed = 5.335f;
+
+        public float DefaultAttackingMoveSpeed = 1f;
 
         [Tooltip("How fast the character turns to face movement direction")]
         [Range(0.0f, 0.3f)]
@@ -86,6 +88,8 @@ namespace StarterAssets
         private float _rotationVelocity;
         private float _verticalVelocity;
         private float _terminalVelocity = 53.0f;
+        private float _MoveSpeed;
+        private float _SprintSpeed;
 
         // timeout deltatime
         private float _jumpTimeoutDelta;
@@ -114,6 +118,8 @@ namespace StarterAssets
         [SerializeField] private float inputX;
         [SerializeField] private float inputY;
         [HideInInspector] public bool isMoving = false;
+        
+
         private bool IsCurrentDeviceMouse
         {
             get
@@ -159,7 +165,6 @@ namespace StarterAssets
 
         private void Update()
         {
-            _hasAnimator = TryGetComponent(out _animator);
             if (!_animator.GetBool("Roll"))
             {
                 JumpAndGravity();
@@ -227,7 +232,7 @@ namespace StarterAssets
         private void Move()
         {
             // set target speed based on move speed, sprint speed and if sprint is pressed
-            float targetSpeed = ((_input.sprint && _character.curStamina > 5) ? SprintSpeed : MoveSpeed);
+            float targetSpeed = ((_input.sprint && _character.curStamina > 5) ? _SprintSpeed : _MoveSpeed);
 
             // a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
 
@@ -284,6 +289,10 @@ namespace StarterAssets
             {
                 isMoving = false;
             }
+
+            Debug.Log("Move Speed: " + _MoveSpeed);
+            Debug.Log(targetSpeed);
+            Debug.Log(_speed);
 
 
             Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
@@ -476,6 +485,25 @@ namespace StarterAssets
         }
 
 
-
+        public void SetMoveSprintSpeed(string mode)
+        {
+            switch (mode)
+            {
+                case "Default":
+                    _MoveSpeed = DefaultMoveSpeed;
+                    _SprintSpeed = DefaultSprintSpeed;
+                    break;
+                case "Sprinting":
+                    _MoveSpeed = DefaultAttackingMoveSpeed;
+                    _SprintSpeed = DefaultAttackingMoveSpeed;
+                    break;
+                case "Staggered":
+                    _MoveSpeed = 0;
+                    _SprintSpeed = 0;
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }

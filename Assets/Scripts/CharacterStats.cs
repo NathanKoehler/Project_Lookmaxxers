@@ -182,22 +182,20 @@ public class CharacterStats : IEntityStats
             }
         }
 
-        if (isAttacking)
+        if (isStaggered)
         {
-            tController.SprintSpeed = 1;
-            tController.MoveSpeed = 1;
+            tController.SetMoveSprintSpeed("Staggered");
+        }
+        else if (isAttacking)
+        {
+            tController.SetMoveSprintSpeed("Attacking");
         }
         else
         {
-            tController.SprintSpeed = 6;
-            tController.MoveSpeed = 2;
+            tController.SetMoveSprintSpeed("Default");
         }
 
-        if (isStaggered)
-        {
-            tController.SprintSpeed = 0;
-            tController.MoveSpeed = 0;
-        }
+        
 
         // if (!isRolling && !isStaggered && !isAttacking && Input.GetKeyDown(KeyCode.Mouse0))
         // {

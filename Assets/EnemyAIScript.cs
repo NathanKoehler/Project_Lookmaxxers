@@ -268,8 +268,6 @@ public class EnemyAIScript : MonoBehaviour
 
             bool blocked = NavMesh.Raycast(transform.position, target.transform.position, out hit, NavMesh.AllAreas);
 
-            Debug.Log("Blocked: " + blocked);
-
             // draw the NavMesh raycast
             Debug.DrawRay(transform.position, target.transform.position - transform.position, blocked ? Color.red : Color.green, 1f);
 
