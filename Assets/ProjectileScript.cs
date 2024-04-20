@@ -45,8 +45,9 @@ public class ProjectileScript : MonoBehaviour
             Debug.Log(enemy.GetInstanceID());
             IEntityStats stats = enemy.GetComponent<IEntityStats>();
             stats.TakeDamage(damage);
-            Destroy(this.gameObject);
         }
+        print("Projectile collision " + other.gameObject + ", Tag:" + other.gameObject.tag);
+        if (!other.CompareTag("Player") && !other.CompareTag("Attack")) Destroy(this.gameObject);
     }
 
     public void SetDirection(Vector3 _dir)

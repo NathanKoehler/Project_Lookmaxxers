@@ -325,4 +325,9 @@ public class CharacterStats : IEntityStats
         cController.enabled = true;
         anim.enabled = true;
     }
+
+    public void SetHeavyAttack()
+    {
+        weaponScript.heavyAttacking = true; 
+    }
 }
