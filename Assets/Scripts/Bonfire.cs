@@ -6,7 +6,6 @@ public class Bonfire : MonoBehaviour
 {
     private void Start()
     {
-        material = GetComponent<Material>();
     }
 
     private GameObject FindPlayerWithStats(GameObject obj)
