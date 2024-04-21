@@ -48,6 +48,8 @@ MonoBehaviour:
   originalProp: {fileID: 2663188131556127113}
   brokenProp: {fileID: 3446503826883763161, guid: 719c4ad319241ce479e2a4b9f571ecaf,
     type: 3}
+  healingItem: {fileID: 1749228282374093103, guid: 828ebc69259788941b840d7f59da4209,
+    type: 3}
   isBroken: 0
 --- !u!1001 &2897189702417075416
 PrefabInstance:
