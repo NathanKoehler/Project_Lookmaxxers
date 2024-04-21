@@ -48,6 +48,8 @@ MonoBehaviour:
   originalProp: {fileID: 2663188131556127113}
   brokenProp: {fileID: 3446503826883763161, guid: 719c4ad319241ce479e2a4b9f571ecaf,
     type: 3}
+  healingItem: {fileID: 1749228282374093103, guid: 828ebc69259788941b840d7f59da4209,
+    type: 3}
   isBroken: 0
 --- !u!1001 &2897189702417075416
 PrefabInstance:
@@ -189,6 +191,19 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: -1
   m_Mesh: {fileID: 2534964839176971238, guid: d3b420eb406f27546a07609de73ea3c4, type: 3}
+--- !u!65 &1312081224618233005
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2663188131556127113}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.08, y: 0.08, z: 0.062452946}
+  m_Center: {x: -0.000000059604645, y: 0.000000014901161, z: 0.026564129}
 --- !u!4 &3440288124163337011 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d3b420eb406f27546a07609de73ea3c4,

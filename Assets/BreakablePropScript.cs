@@ -6,6 +6,7 @@ public class BreakablePropScript : MonoBehaviour
 {
     public GameObject originalProp;
     public GameObject brokenProp;
+    public GameObject healingItem;
     public bool isBroken = false;
 
     private float explosionMinForce = 1f;
@@ -30,7 +31,21 @@ public class BreakablePropScript : MonoBehaviour
             brokenObj.transform.position = originalProp.transform.position;
             brokenObj.transform.rotation = originalProp.transform.rotation;
         }
-       
+
+        if (healingItem != null)
+        {
+            GameObject heal = Instantiate(healingItem) as GameObject;
+            if (originalTransform)
+            {
+                heal.transform.position = originalTransform.position + new Vector3(0f, 1f, 0);
+                heal.transform.rotation = originalTransform.rotation;
+            }
+            else
+            {
+                heal.transform.position = originalProp.transform.position + new Vector3(0f, 1f, 0);
+                heal.transform.rotation = originalProp.transform.rotation;
+            }
+        }
 
         originalProp.SetActive(false);
 
