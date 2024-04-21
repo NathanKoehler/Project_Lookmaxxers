@@ -19,7 +19,7 @@ public class GameStarter : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("demo");
+        SceneManager.LoadScene("PG1_updatedMap");
         Time.timeScale = 1;
     }
 }
