@@ -110,6 +110,7 @@ namespace StarterAssets
         private StarterAssetsInputs _input;
         private GameObject _mainCamera;
         private CharacterStats _character;
+        private AudioSource audioSource;
 
         private const float _threshold = 0.01f;
 
@@ -118,7 +119,11 @@ namespace StarterAssets
         [SerializeField] private float inputX;
         [SerializeField] private float inputY;
         [HideInInspector] public bool isMoving = false;
-        
+
+        [SerializeField] private AudioClip walkSFX;
+        [SerializeField] private AudioClip sprintSFX;
+        [SerializeField] private AudioClip jumpSFX;
+
 
         private bool IsCurrentDeviceMouse
         {
@@ -152,6 +157,7 @@ namespace StarterAssets
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
             _playerInput = GetComponent<PlayerInput>();
             _character = GetComponent<CharacterStats>();
+            audioSource = GetComponent<AudioSource>();
 #else
 			Debug.LogError( "Starter Assets package is missing dependencies. Please use Tools/Starter Assets/Reinstall Dependencies to fix it");
 #endif
@@ -233,7 +239,28 @@ namespace StarterAssets
         {
             // set target speed based on move speed, sprint speed and if sprint is pressed
             float targetSpeed = ((_input.sprint && _character.curStamina > 5) ? _SprintSpeed : _MoveSpeed);
-
+            if (_input.move != Vector2.zero)
+            {
+                if (targetSpeed == _SprintSpeed)
+                {
+                    audioSource.clip = sprintSFX;
+                }
+                else
+                {
+                    audioSource.clip = walkSFX;
+                }
+                if (!audioSource.isPlaying)
+                {
+                    
+                    audioSource.Play();
+                }
+            } else
+            {
+                if (audioSource.isPlaying)
+                {
+                    audioSource.Stop();
+                }
+            }
             // a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
 
             // note: Vector2's == operator uses approximation so is not floating point error prone, and is cheaper than magnitude
@@ -336,6 +363,8 @@ namespace StarterAssets
                     {
                         _animator.SetBool(_animIDJump, true);
                     }
+
+                    //Play stupid ass sound
                 }
 
                 // jump timeout

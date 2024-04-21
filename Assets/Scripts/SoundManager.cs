@@ -10,6 +10,8 @@ public class SoundManager : MonoBehaviour
 
     [SerializeField] private AudioClip hitWeapon;
     [SerializeField] private AudioClip missWeapon;
+    [SerializeField] private AudioClip breakItem;
+    [SerializeField] private AudioClip jeremyAttack;
 
     // Start is called before the first frame update
     private void Awake()
@@ -54,5 +56,23 @@ public class SoundManager : MonoBehaviour
     public void PlayAttackSound()
     {
         PlaySoundClip(hitWeapon, transform, 1f, 0.6f);
+    }
+
+    public void PlayBreakSound()
+    {
+        PlaySoundClip(breakItem, transform, 1f);
+    }
+
+    public void HandleEnemyAttackSFX(string type)
+    {
+        switch (type)
+        {
+            case "default":
+                break;
+            case "jeremy":
+                PlaySoundClip(jeremyAttack, transform, 1f);
+                break;
+        }
+        
     }
 }

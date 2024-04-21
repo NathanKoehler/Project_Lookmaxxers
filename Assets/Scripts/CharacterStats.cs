@@ -49,12 +49,10 @@ public class CharacterStats : IEntityStats
     public GameObject slashRoot;
 
     [SerializeField] private AudioClip dodgeSFX;
-    [SerializeField] private AudioClip sprintSFX;
     [SerializeField] private AudioClip hurtSFX;
     [SerializeField] private AudioClip healSFX;
     [SerializeField] private AudioClip restSFX;
 
-    private bool isSprintSFX;
     private float time;
     private float maxTime = 2f;
 
@@ -79,6 +77,7 @@ public class CharacterStats : IEntityStats
         StaminaAlert.blocksRaycasts = false;
         StaminaAlert.alpha = 0;
         StaminaAlert.gameObject.SetActive(false);
+
     }
 
     //public bool spendStamina(float spentValue)
@@ -166,19 +165,6 @@ public class CharacterStats : IEntityStats
                 staminaRegenDelayTimer = 0;
                 curStamina -= (3.0f * Time.deltaTime);
 
-                if (!isSprintSFX)
-                {
-                    SoundManager.instance.PlaySoundClip(sprintSFX, transform, 1f);
-                    isSprintSFX = true;
-                    time = maxTime;
-                }
-                if (time >= 0)
-                {
-                    time -= Time.deltaTime;
-                } else
-                {
-                    isSprintSFX = false;
-                }
             }
         }
 

@@ -41,6 +41,8 @@ public class EnemyStats : IEntityStats
     public float retreatDistance = 2;
     public float defaultStaggerThreshold = 8f;
 
+    public string enemy_type = "default";
+
 
     // Start is called before the first frame update
     void Start()
@@ -98,6 +100,12 @@ public class EnemyStats : IEntityStats
         curStamina -= weaponScript.GetStaminaCost();
         staminaRegenDelayTimer = 0;
         weaponScript.OnAttackBegin();
+        Invoke("AttackAudio", 0.5f);
+    }
+
+    void AttackAudio()
+    {
+        SoundManager.instance.HandleEnemyAttackSFX(enemy_type);
     }
 
     public override void OnAttackEnd()

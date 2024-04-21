@@ -30,6 +30,10 @@ public class mikeAi : IEntityStats
     private PlayerRange bossfightPlayerRange;
     public GameObject ladder;
 
+    [SerializeField] private AudioClip hitSFX;
+    [SerializeField] private AudioClip screamSFX;
+    private bool isScreamed = false;
+
     //Stats
     public string bossName = "A Random Guy from The Streets";
     public float currHP = 90;
@@ -39,9 +43,6 @@ public class mikeAi : IEntityStats
 
     [HideInInspector]
     public bool isStaggered = false;
-
-
-
 
 
     public enum State
@@ -89,6 +90,7 @@ public class mikeAi : IEntityStats
         if (player == null)
         {
             ChangeState(State.Idle);
+            isScreamed = false;
         }
 
         // STATE MACHINE
@@ -138,6 +140,11 @@ public class mikeAi : IEntityStats
         if (firstContactWithPlayer)
         {
             anim.SetTrigger("War Cry");
+            if (!isScreamed)
+            {
+                SoundManager.instance.PlaySoundClip(screamSFX, transform, 1f);
+                isScreamed = true;
+            }
         }
         else
         {
@@ -265,6 +272,7 @@ public class mikeAi : IEntityStats
         curStamina -= weaponScript.GetStaminaCost();
         staminaRegenDelayTimer = 0;
         weaponScript.OnAttackBegin();
+        SoundManager.instance.PlaySoundClip(hitSFX, transform, 1f);
     }
 
     public override void OnAttackEnd()
