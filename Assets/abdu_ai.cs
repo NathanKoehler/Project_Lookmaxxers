@@ -13,7 +13,7 @@ public class abdu_ai : MonoBehaviour
         SEEK,
         STRAFE,
         ATTACK,
-        BACKUP,
+        RETREAT,
     }
 
     private NavMeshAgent agent;
@@ -31,6 +31,17 @@ public class abdu_ai : MonoBehaviour
     private bool isWaiting = false;
     private float patrolWaitTime = 5f;
     private IEntityStats targetStats;
+
+    [SerializeField]
+    private Transform weaponEndTransform;
+    [SerializeField]
+    private GameObject magicProj;
+
+    [SerializeField]
+    private float retreatRadiusThreshold = 4f;
+    [SerializeField]
+    private float seekRadiusThreshold = 8f;
+
 
     [SerializeField]
     AIState aiState;
@@ -87,7 +98,6 @@ public class abdu_ai : MonoBehaviour
         switch (aiState)
         {
             case AIState.PATROL:
-                animator.SetBool("aggressive", false);
                 if (!isWaiting && agent.remainingDistance < 1f && !agent.pathPending)
                 {
                     isWaiting = true;
@@ -102,50 +112,57 @@ public class abdu_ai : MonoBehaviour
             case AIState.SEEK:
                 setDestinationToPredicted();
 
-                if (stats.curStamina > stats.GetWeaponScript().staminaCost)
+                if (Vector3.Distance(player.position, transform.position) < seekRadiusThreshold)
                 {
-                    aiState = AIState.ATTACK;
-                    stats.isAttacking = true;
-                    animator.SetTrigger("attack1");
+                    aiState = AIState.STRAFE;
+                    agent.ResetPath();
                 }
+
                 break;
-            case AIState.BACKUP:
-                setDestinationToPredicted();
-                if ((stats.isStaggered && UnityEngine.Random.Range(0, 3) > 0))
+            case AIState.STRAFE:
+                float playerDistance = Vector3.Distance(player.position, transform.position);
+
+                if (playerDistance > seekRadiusThreshold)
                 {
-                    animator.SetBool("retreat", false);
                     aiState = AIState.SEEK;
                 }
-                Vector3 backward = -transform.forward;
-
-                Vector3 rayOrigin = transform.position;
-
-                RaycastHit hit;
-
-                if (Physics.Raycast(rayOrigin, backward, out hit, 1.2f))
+                else if (playerDistance < retreatRadiusThreshold)
                 {
-                    if (hit.transform.gameObject.layer == 6)
+                    aiState = AIState.RETREAT;
+                }
+                else
+                {
+                    if (!stats.isStaggered)
                     {
-                        animator.SetBool("retreat", false);
-                        aiState = AIState.SEEK;
+                        aiState = AIState.ATTACK;
+                        stats.isAttacking = true;
+
+                        GameObject proj = Instantiate(magicProj, weaponEndTransform.position, new Quaternion());
+                        Vector3 projDir = player.position - transform.position;
+                        ProjectileScript projScript = proj.GetComponent<ProjectileScript>();
+                        projScript.againstTag = "Player";
+                        projScript.SetDirection(projDir);
+                        projScript.damage = 1000;
+                        projScript.speed = 80f;
                     }
                 }
                 break;
-            //case AIState.ATTACK:
-            //    if (!stats.isAttacking)
-            //    {
-            //        stats.RerollRetreatThreshold();
-            //        if (stats.curStamina < stats.retreatThreshold)
-            //        {
-            //            aiState = AIState.RETREAT;
-            //            animator.SetBool("retreat", true);
-            //        }
-            //        else
-            //        {
-            //            aiState = AIState.SEEK;
-            //        }
-            //    }
-            //    break;
+            case AIState.RETREAT:
+                setDestinationToPredicted();
+
+                if (Vector3.Distance(player.position, transform.position) > retreatRadiusThreshold)
+                {
+                    aiState = AIState.STRAFE;
+                    agent.ResetPath();
+                }
+                break;
+            case AIState.ATTACK:
+                if (!stats.isAttacking)
+                {
+                    aiState = AIState.STRAFE;
+                    agent.ResetPath();
+                }
+                break;
             default:
                 break;
         }
@@ -185,14 +202,32 @@ public class abdu_ai : MonoBehaviour
 
         animator.SetBool("move", shouldMove);
 
+        if (aiState == AIState.RETREAT)
+        {
+            Velocity = -Velocity;
+        }
+
         animator.SetFloat("locamotion", Velocity.magnitude);
-        //if (aiState == AIState.RETREAT)
-        //{
-        //    animator.SetFloat("locamotion", -Velocity.magnitude);
-        //} else
-        //{
-        //    animator.SetFloat("locamotion", Velocity.magnitude);
-        //}
+
+        //Quaternion rotation = Quaternion.LookRotation(agent.velocity.normalized);
+
+        
+
+        // Get the forward vector of the GameObject
+        Vector3 forwardVector = transform.forward;
+
+        // Define an arbitrary vector pointing in a different direction
+        Vector3 arbitraryVector = Vector3.up; // You can use any vector that is not collinear with the forward vector
+
+        // Calculate a vector perpendicular to the forward vector
+        Vector3 prep_vec = Vector3.Cross(forwardVector, arbitraryVector);
+
+
+        float velx = Vector3.Dot(prep_vec, Velocity);
+        float vely = Vector3.Dot(transform.forward, Velocity);
+
+        animator.SetFloat("velx", Velocity.x);
+        animator.SetFloat("vely", Velocity.y);
 
         float deltaMagnitude = worldDeltaPosition.magnitude;
         if (deltaMagnitude > agent.radius / 2f)
@@ -203,18 +238,6 @@ public class abdu_ai : MonoBehaviour
 
     void setDestinationToPredicted()
     {
-        //float dist = Vector3.Distance(target.transform.position, transform.position);
-
-        //NavMeshHit hit;
-        //bool blocked = NavMesh.Raycast(transform.position, target.transform.position, out hit, NavMesh.AllAreas);
-
-        //if (blocked)
-        //{
-        //    futureTarget = Vector3.Lerp(hit.position, target.transform.position, 0.29f);
-        //}
-
-        //targetFuturePosition = futureTarget;
-
         agent.SetDestination(target.transform.position);
     }
 
@@ -249,7 +272,7 @@ public class abdu_ai : MonoBehaviour
 
     IEnumerator SearchForTarget()
     {
-        Debug.Log("Searching for target");
+        //Debug.Log("Searching for target");
         yield return new WaitForSeconds(0.5f);
         if (target != null)
         {
@@ -312,27 +335,27 @@ public class abdu_ai : MonoBehaviour
         }
     }
 
-    private void StrafeLeft()
-    {
-        Vector3 offsetPlayer = transform.position - player.position;
+    //private void StrafeLeft()
+    //{
+    //    Vector3 offsetPlayer = transform.position - player.position;
 
-        Vector3 dir = Vector3.Cross(offsetPlayer, Vector3.up);
-        agent.SetDestination(transform.position + dir);
-        Vector3 lookPosition = player.position - transform.position;
-        lookPosition.y = 0;
-        Quaternion rotation = Quaternion.LookRotation(lookPosition);
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 2f);
-    }
+    //    Vector3 dir = Vector3.Cross(offsetPlayer, Vector3.up);
+    //    agent.SetDestination(transform.position + dir);
+    //    Vector3 lookPosition = player.position - transform.position;
+    //    lookPosition.y = 0;
+    //    Quaternion rotation = Quaternion.LookRotation(lookPosition);
+    //    transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 2f);
+    //}
 
-    private void StrafeRight()
-    {
-        Vector3 offsetPlayer = player.position - transform.position;
+    //private void StrafeRight()
+    //{
+    //    Vector3 offsetPlayer = player.position - transform.position;
 
-        Vector3 dir = Vector3.Cross(offsetPlayer, Vector3.up);
-        agent.SetDestination(transform.position + dir);
-        Vector3 lookPosition = player.position - transform.position;
-        lookPosition.y = 0;
-        Quaternion rotation = Quaternion.LookRotation(lookPosition);
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 2f);
-    }
+    //    Vector3 dir = Vector3.Cross(offsetPlayer, Vector3.up);
+    //    agent.SetDestination(transform.position + dir);
+    //    Vector3 lookPosition = player.position - transform.position;
+    //    lookPosition.y = 0;
+    //    Quaternion rotation = Quaternion.LookRotation(lookPosition);
+    //    transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 2f);
+    //}
 }
