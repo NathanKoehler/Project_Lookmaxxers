@@ -136,7 +136,7 @@ public class abdu_ai : MonoBehaviour
                     {
                         aiState = AIState.ATTACK;
                         stats.isAttacking = true;
-
+                        animator.SetTrigger("Attack");
                         GameObject proj = Instantiate(magicProj, weaponEndTransform.position, new Quaternion());
                         Vector3 projDir = player.position - transform.position;
                         ProjectileScript projScript = proj.GetComponent<ProjectileScript>();
@@ -211,7 +211,7 @@ public class abdu_ai : MonoBehaviour
 
         //Quaternion rotation = Quaternion.LookRotation(agent.velocity.normalized);
 
-        
+
 
         // Get the forward vector of the GameObject
         Vector3 forwardVector = transform.forward;
