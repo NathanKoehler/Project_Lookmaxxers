@@ -147,7 +147,10 @@ public class EnemyStats : IEntityStats
         navAgent.enabled = false;
         yield return new WaitForFixedUpdate();
         anim.enabled = false;
-        StartCoroutine(Shrink(transform, 2));
+        if (explosionTransform != null)
+        {
+            StartCoroutine(Shrink(transform, 2));
+        }
     }
 
     private IEnumerator Shrink(Transform trans, float delay)
