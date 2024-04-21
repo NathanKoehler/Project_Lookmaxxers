@@ -123,7 +123,7 @@ namespace StarterAssets
         [SerializeField] private AudioClip walkSFX;
         [SerializeField] private AudioClip sprintSFX;
         [SerializeField] private AudioClip jumpSFX;
-
+        private bool playedJumpSFX;
 
         private bool IsCurrentDeviceMouse
         {
@@ -239,7 +239,7 @@ namespace StarterAssets
         {
             // set target speed based on move speed, sprint speed and if sprint is pressed
             float targetSpeed = ((_input.sprint && _character.curStamina > 5) ? _SprintSpeed : _MoveSpeed);
-            if (_input.move != Vector2.zero)
+            if (_input.move != Vector2.zero && _animator.GetBool("Grounded"))
             {
                 if (targetSpeed == _SprintSpeed)
                 {
@@ -363,8 +363,16 @@ namespace StarterAssets
                     {
                         _animator.SetBool(_animIDJump, true);
                     }
-
                     //Play stupid ass sound
+                    
+                    if (!playedJumpSFX)
+                    {
+                        
+                        SoundManager.instance.PlaySoundClip(jumpSFX, transform, 1f);
+                        playedJumpSFX = true;
+                    }
+                    
+
                 }
 
                 // jump timeout
@@ -394,6 +402,7 @@ namespace StarterAssets
 
                 // if we are not grounded, do not jump
                 _input.jump = false;
+                playedJumpSFX = false;
             }
 
             // apply gravity over time if under terminal (multiply by delta time twice to linearly speed up over time)
