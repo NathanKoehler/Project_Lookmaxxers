@@ -133,6 +133,12 @@ public class EnemyStats : IEntityStats
         isStaggered = false;
     }
 
+    public IEnumerator ResetIsAttacking(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        isAttacking = false;
+    }
+
     public override IEnumerator Die()
     {
         controller.enabled = false;

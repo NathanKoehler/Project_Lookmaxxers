@@ -32,6 +32,7 @@ public class abdu_ai : MonoBehaviour
     private float patrolWaitTime = 5f;
     private IEntityStats targetStats;
 
+
     [SerializeField]
     private Transform weaponEndTransform;
     [SerializeField]
@@ -120,6 +121,8 @@ public class abdu_ai : MonoBehaviour
 
                 break;
             case AIState.STRAFE:
+                setDestinationToPredicted();
+
                 float playerDistance = Vector3.Distance(player.position, transform.position);
 
                 if (playerDistance > seekRadiusThreshold)
@@ -132,17 +135,18 @@ public class abdu_ai : MonoBehaviour
                 }
                 else
                 {
-                    if (!stats.isStaggered)
+                    if (!stats.isStaggered && !stats.isAttacking)
                     {
-                        aiState = AIState.ATTACK;
                         stats.isAttacking = true;
+                        StartCoroutine(stats.ResetIsAttacking(UnityEngine.Random.Range(2f, 4f)));
+                        //aiState = AIState.ATTACK;
                         animator.SetTrigger("Attack");
                         GameObject proj = Instantiate(magicProj, weaponEndTransform.position, new Quaternion());
                         Vector3 projDir = player.position - transform.position;
                         ProjectileScript projScript = proj.GetComponent<ProjectileScript>();
                         projScript.againstTag = "Player";
                         projScript.SetDirection(projDir);
-                        projScript.damage = 1000;
+                        projScript.damage = 10;
                         projScript.speed = 80f;
                     }
                 }
@@ -156,13 +160,10 @@ public class abdu_ai : MonoBehaviour
                     agent.ResetPath();
                 }
                 break;
-            case AIState.ATTACK:
-                if (!stats.isAttacking)
-                {
-                    aiState = AIState.STRAFE;
-                    agent.ResetPath();
-                }
-                break;
+            //case AIState.ATTACK:
+            //    aiState = AIState.STRAFE;
+            //    agent.ResetPath();
+            //    break;
             default:
                 break;
         }
@@ -205,6 +206,10 @@ public class abdu_ai : MonoBehaviour
         if (aiState == AIState.RETREAT)
         {
             Velocity = -Velocity;
+        }
+        else if (aiState == AIState.STRAFE)
+        {
+            Velocity = Vector3.zero;
         }
 
         animator.SetFloat("locamotion", Velocity.magnitude);
