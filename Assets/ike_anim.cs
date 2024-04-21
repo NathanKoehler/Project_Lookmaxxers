@@ -7,10 +7,7 @@ using UnityEngine.AI;
 
 public class ike_anim : MonoBehaviour
 {
-    // private NavMeshAgent agent;
     private Animator animator;
-
-    public Transform player;
     Vector3 previousPosition;
 
 
@@ -27,15 +24,6 @@ public class ike_anim : MonoBehaviour
     {
         update_anim_params();
 
-
-        // agent.SetDestination(player.transform.position);
-
-        float distance_from_player = Vector3.Distance(transform.position, player.transform.position);
-
-        // if (distance_from_player < agent.stoppingDistance)
-        // {
-        //     transform.LookAt(player.transform);
-        // }
     }
 
     private void update_anim_params()
