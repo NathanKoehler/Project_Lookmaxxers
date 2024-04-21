@@ -328,4 +328,9 @@ public class CharacterStats : IEntityStats
     {
         weaponScript.heavyAttacking = true; 
     }
+
+    public void EnableWeapon(int x)
+    {
+        weaponScript.EnableWeapon(x);
+    }
 }
