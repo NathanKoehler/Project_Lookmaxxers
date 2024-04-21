@@ -16,13 +16,20 @@ public class WeaponScript : MonoBehaviour
     public int staminaCost = 0;
     public bool heavyAttacking;
     public GameObject magicProj;
+
+
+    private const int NUM_WEAPONS = 3; 
+    bool[] weaponAvailable; 
     // Start is called before the first frame update
     void Start()
     {
         hitEnemies = new List<int>();
         weaponCollider = GetComponentInChildren<Collider>();
         weaponCollider.enabled = false;
-        heavyAttacking = false; 
+        heavyAttacking = false;
+        weaponAvailable = new bool[NUM_WEAPONS];
+        weaponAvailable[0] = true; 
+
     }
 
     // Update is called once per frame
@@ -33,6 +40,7 @@ public class WeaponScript : MonoBehaviour
 
     public void changeWeapon(int x) 
     {
+        if (!weaponAvailable[x]) return; 
         switch (x)
         {
             case 0:
@@ -122,10 +130,10 @@ public class WeaponScript : MonoBehaviour
             Vector3 projDir = (Quaternion.Euler(0.0f, wielder.transform.eulerAngles.y, 0.0f) * Vector3.forward).normalized;
             Debug.Log(projDir);
             proj.GetComponent<ProjectileScript>().SetDirection(projDir);
-            if (heavyAttacking)
+/*            if (heavyAttacking)
             {
                 proj.GetComponent<SphereCollider>().radius *= 2;
-            }
+            }*/
         }
     }
 
@@ -138,5 +146,10 @@ public class WeaponScript : MonoBehaviour
     public float GetStaminaCost()
     {
         return staminaCost;
+    }
+
+    public void EnableWeapon(int x)
+    {
+        weaponAvailable[x] = true;
     }
 }

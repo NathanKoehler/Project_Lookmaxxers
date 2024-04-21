@@ -9,11 +9,17 @@ public class ProjectileScript : MonoBehaviour
     private int damage = 4;
     [SerializeField] private Vector3 dir;
     int speed;
+    float timer = 4;
     void Start()
     {
         
     }
 
+    private void Update()
+    {
+        if (timer < 0f) Destroy(this.gameObject);
+        timer -= 1f * Time.deltaTime;
+    }
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -45,9 +51,10 @@ public class ProjectileScript : MonoBehaviour
             Debug.Log(enemy.GetInstanceID());
             IEntityStats stats = enemy.GetComponent<IEntityStats>();
             stats.TakeDamage(damage);
+            Destroy(this.gameObject);
         }
-        print("Projectile collision " + other.gameObject + ", Tag:" + other.gameObject.tag);
-        if (!other.CompareTag("Player") && !other.CompareTag("Attack")) Destroy(this.gameObject);
+        //print("Projectile collision " + other.gameObject + ", Tag:" + other.gameObject.tag);
+        //if (!other.CompareTag("Player") && !other.CompareTag("Attack")) Destroy(this.gameObject);
     }
 
     public void SetDirection(Vector3 _dir)
