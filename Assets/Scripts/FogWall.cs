@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class FogWall : MonoBehaviour
 {
+
+    private MeshRenderer meshRenderer;
     public Collider real;
-    public Collider fake; 
+    public Collider fake;
     [SerializeField] private mikeAi Mike;
     [SerializeField] private CharacterStats player;
 
@@ -15,27 +17,33 @@ public class FogWall : MonoBehaviour
     void Start()
     {
         real.enabled = false;
-        fake.enabled = true; 
+        fake.enabled = true;
+
+        meshRenderer = GetComponent<MeshRenderer>();
     }
 
-    void Update() 
+    void Update()
     {
-        if(Mike.isDead) {
+        if (Mike.isDead)
+        {
             Destroy(this.gameObject);
         }
-        if(player.isDead) {
+        if (player.isDead)
+        {
             Mike.GoIdle();
             real.enabled = false;
-            fake.enabled = true; 
+            fake.enabled = true;
         }
     }
 
-    void OnTriggerExit(Collider other) {
+    void OnTriggerExit(Collider other)
+    {
         if (!real.enabled && other.gameObject.tag == "Player")
         {
             real.enabled = true;
-            fake.enabled = false; 
+            fake.enabled = false;
             SoundManager.instance.PlaySoundClip(enterSFX, transform, 1f);
+            meshRenderer.enabled = true;
         }
     }
 
