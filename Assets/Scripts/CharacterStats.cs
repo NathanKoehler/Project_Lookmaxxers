@@ -26,6 +26,7 @@ public class CharacterStats : IEntityStats
     [SerializeField] private GameObject curBonfire;
     [SerializeField] private float staggerThreshold;
 
+    [SerializeField] private CanvasGroup DeathAlert; 
 
     private Animator anim;
     private CharacterController cController;
@@ -104,6 +105,7 @@ public class CharacterStats : IEntityStats
 
         if (isDead)
         {
+            DeathAlert.GetComponent<HandleDeath>().ShowDeathScreen();
             isDead = false;
             StartCoroutine(Die());
             return;
@@ -196,6 +198,7 @@ public class CharacterStats : IEntityStats
         staggerThreshold += (damage / 12f) * (defaultStaggerThreshold / staggerThreshold);
         if (curHealth <= 0)
         {
+            print("Die");
             isDead = true;
         }
         else if (damage >= staggerThreshold)

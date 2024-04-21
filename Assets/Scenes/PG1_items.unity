@@ -8528,6 +8528,7 @@ MonoBehaviour:
   FlaskNumDisplay: {fileID: 2996769590670657988}
   curBonfire: {fileID: 321266269}
   staggerThreshold: 0
+  DeathAlert: {fileID: 8898213476279403131}
   curStamina: 50
   maxStamina: 50
   isRolling: 0

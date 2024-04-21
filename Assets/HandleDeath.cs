@@ -14,6 +14,7 @@ public class HandleDeath : MonoBehaviour
 
     [SerializeField] private AudioClip deathSFX;
 
+    //private bool showDeathScreen; 
 
     // Start is called before the first frame update
     void Start()
@@ -27,13 +28,6 @@ public class HandleDeath : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        if (playerStats.isDead)
-        {
-            
-            time = displayTimer;
-            SoundManager.instance.PlaySoundClip(deathSFX, transform, 1f);
-        }
 
         if (time > 0f)
         {
@@ -54,4 +48,11 @@ public class HandleDeath : MonoBehaviour
             cg.alpha = 0.0f;
         }
     }
+
+    public void ShowDeathScreen()
+    {
+        time = displayTimer;
+        SoundManager.instance.PlaySoundClip(deathSFX, transform, 1f);
+    }
+
 }
