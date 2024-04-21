@@ -262,6 +262,7 @@ public class ikeAi : IEntityStats
 
     public override void OnAttackBegin()
     {
+        print("Ike attack");
         curStamina -= weaponScript.GetStaminaCost();
         staminaRegenDelayTimer = 0;
         weaponScript.OnAttackBegin();
