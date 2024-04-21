@@ -1362,11 +1362,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2996769590996779683}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: -119.5}
+  m_AnchoredPosition: {x: 0, y: -120}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2996769589968403327
@@ -1397,7 +1397,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: Hello
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1497,7 +1497,7 @@ RectTransform:
   - {fileID: 2278036158676068421}
   - {fileID: 2278036158421360753}
   m_Father: {fileID: 2996769590996779683}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -1871,8 +1871,8 @@ RectTransform:
   - {fileID: 6712837227094855944}
   - {fileID: 2996769590594952883}
   - {fileID: 2996769591335807518}
-  - {fileID: 2996769589968403321}
   - {fileID: 2996769590187048219}
+  - {fileID: 2996769589968403321}
   m_Father: {fileID: 2996769590238735867}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3212,6 +3212,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03a637d3d5a4a7b48bb31205037a9362, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goal1: {fileID: 0}
+  goal2: {fileID: 0}
+  mike: {fileID: 0}
 --- !u!1 &6753080899653369301
 GameObject:
   m_ObjectHideFlags: 0
