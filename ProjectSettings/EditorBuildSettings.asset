@@ -14,9 +14,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Playground 1.unity
     guid: a4162cb2841d98b4ea12a805a77cf012
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/PG1_updatedMap.unity
     guid: ea1abaa12f8a49e46ab379ad9ad9c6ac
+  - enabled: 1
+    path: Assets/Scenes/PG1_items.unity
+    guid: c5c1f8170f2b35a429e5f89db65b45d2
   - enabled: 1
     path: Assets/Scenes/Win Screen.unity
     guid: d34a45144c3b97a4a82f1a1990c0f721
