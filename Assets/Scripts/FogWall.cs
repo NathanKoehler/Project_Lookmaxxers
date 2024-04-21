@@ -20,6 +20,7 @@ public class FogWall : MonoBehaviour
         fake.enabled = true;
 
         meshRenderer = GetComponent<MeshRenderer>();
+        meshRenderer.enabled = false;
     }
 
     void Update()
