@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,8 @@ public class EnemyStats : IEntityStats
     private float staminaRegenDelay = 0.7f;
     [SerializeField]
     private float staminaRegenDelayTimer = 0;
+    [SerializeField]
+    private Transform explosionTransform;
 
     private Animator anim;
     private Collider rootCollider;
@@ -110,7 +113,7 @@ public class EnemyStats : IEntityStats
     
     public void RerollRetreatThreshold()
     {
-        retreatThreshold = Random.Range(maxStamina / 3f, maxStamina);
+        retreatThreshold = UnityEngine.Random.Range(maxStamina / 3f, maxStamina);
     }
 
     public override void StartStagger()
@@ -130,5 +133,13 @@ public class EnemyStats : IEntityStats
         navAgent.enabled = false;
         yield return new WaitForFixedUpdate();
         anim.enabled = false;
+        StartCoroutine(Shrink(transform, 2));
+    }
+
+    private IEnumerator Shrink(Transform trans, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        GetComponent<BreakablePropScript>().Break(trans.position, explosionTransform);
     }
 }

@@ -14,7 +14,7 @@ public class BreakablePropScript : MonoBehaviour
 
     private float fragScale = 8f;
 
-    public void Break(Vector3 explosionSource)
+    public void Break(Vector3 explosionSource, Transform originalTransform = null)
     {
         isBroken = true;
 
@@ -22,8 +22,15 @@ public class BreakablePropScript : MonoBehaviour
 
         GameObject brokenObj = Instantiate(brokenProp, transform) as GameObject;
 
-        brokenObj.transform.position = originalProp.transform.position;
-        brokenObj.transform.rotation = originalProp.transform.rotation;
+        if (originalTransform) {
+            brokenObj.transform.position = originalTransform.position;
+            brokenObj.transform.rotation = originalTransform.rotation;
+        } else
+        {
+            brokenObj.transform.position = originalProp.transform.position;
+            brokenObj.transform.rotation = originalProp.transform.rotation;
+        }
+       
 
         originalProp.SetActive(false);
 
@@ -52,6 +59,5 @@ public class BreakablePropScript : MonoBehaviour
             child.localScale = scale;
             yield return new WaitForSeconds(0.05f);
         }
-
     }
 }

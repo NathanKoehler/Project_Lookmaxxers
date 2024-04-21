@@ -78,7 +78,6 @@ public class WeaponScript : MonoBehaviour
                 if (heavyAttacking)
                 {
                     damageToEnemy += 5;
-                    print("heavy");
                 }
                 stats.TakeDamage(damageToEnemy);
             }
