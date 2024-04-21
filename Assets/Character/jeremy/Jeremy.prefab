@@ -519,7 +519,7 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: cc3be9786c3c824439fdd5e1bce14d64, type: 3}
   m_Controller: {fileID: 9100000, guid: 558c62f940d2f834c9c33ad9b835d23a, type: 2}
-  m_CullingMode: 1
+  m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
@@ -2843,6 +2843,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -1961269946041264199, guid: cc3be9786c3c824439fdd5e1bce14d64,
+        type: 3}
+      propertyPath: m_UpdateWhenOffscreen
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -1781356600409242780, guid: cc3be9786c3c824439fdd5e1bce14d64,
         type: 3}
