@@ -6,9 +6,9 @@ public class ProjectileScript : MonoBehaviour
 {
     // Start is called before the first frame update
     public string againstTag;
-    private int damage = 4;
+    public int damage = 4;
     [SerializeField] private Vector3 dir;
-    int speed;
+    public float speed = 120f;
     float timer = 4;
     void Start()
     {
@@ -23,9 +23,8 @@ public class ProjectileScript : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        GetComponent<Rigidbody>().AddForce(dir * speed);
-        speed = 10;
-
+        //GetComponent<Rigidbody>().AddForce(dir * speed);
+        GetComponent<Rigidbody>().AddForce(dir.normalized * speed);
     }
 
     private GameObject FindEnemyWithStats(GameObject obj)
@@ -43,7 +42,7 @@ public class ProjectileScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-
+        Debug.Log(other.gameObject.tag);
         if (other.gameObject.tag == againstTag)
         {
             GameObject enemy = FindEnemyWithStats(other.gameObject);
@@ -61,8 +60,14 @@ public class ProjectileScript : MonoBehaviour
     {
         Debug.Log("Set projectile Direction");
         dir = new Vector3(_dir.x, _dir.y, _dir.z);
-        speed = 800;
+        StartCoroutine(AddForce());
     }
 
-    
+    IEnumerator AddForce()
+    {
+        yield return new WaitForSeconds(0.1f);
+        GetComponent<Rigidbody>().AddForce(dir.normalized * speed);
+    }
+
+
 }

@@ -648,7 +648,7 @@ NavMeshAgent:
   m_Acceleration: 11.38
   avoidancePriority: 50
   m_AngularSpeed: 268.51
-  m_StoppingDistance: 6.04
+  m_StoppingDistance: 0.1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -668,6 +668,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ea3e2a8ee86a1d4a9c3a99c6bb268fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ikActive: 1
+  maxLookAheadTime: 0
+  waypoints: []
+  target: {fileID: 0}
+  targetFuturePosition: {x: 0, y: 0, z: 0}
+  retreatRadiusThreshold: 2
+  aiState: 0
   player: {fileID: 0}
 --- !u!54 &6433404098248147143
 Rigidbody:

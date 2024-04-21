@@ -82,7 +82,6 @@ public class EnemyAIScript : MonoBehaviour
         switch (aiState)
         {
             case AIState.PATROL:
-                animator.SetBool("aggressive", false);
                 if (!isWaiting && agent.remainingDistance < 1f && !agent.pathPending)
                 {
                     isWaiting = true;
@@ -260,7 +259,7 @@ public class EnemyAIScript : MonoBehaviour
 
     IEnumerator SearchForTarget()
     {
-        Debug.Log("Searching for target");
+        //Debug.Log("Searching for target");
         yield return new WaitForSeconds(0.5f);
         if (target != null)
         {
