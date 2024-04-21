@@ -18,7 +18,7 @@ public class BreakablePropScript : MonoBehaviour
     {
         isBroken = true;
 
-        
+        SoundManager.instance.PlayBreakSound();
 
         GameObject brokenObj = Instantiate(brokenProp) as GameObject;
 
