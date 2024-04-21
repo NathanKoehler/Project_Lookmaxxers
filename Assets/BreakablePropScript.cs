@@ -20,7 +20,7 @@ public class BreakablePropScript : MonoBehaviour
 
         
 
-        GameObject brokenObj = Instantiate(brokenProp, transform) as GameObject;
+        GameObject brokenObj = Instantiate(brokenProp) as GameObject;
 
         if (originalTransform) {
             brokenObj.transform.position = originalTransform.position;
