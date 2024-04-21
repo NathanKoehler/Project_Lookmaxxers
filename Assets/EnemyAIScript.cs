@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using static EnemyAIScript;
 
-public class EnemyAIScript : MonoBehaviour
+public class EnemyAIScript : MonoBehaviour, EnemyAIInterface
 {
     public enum AIState
     {

@@ -18,7 +18,7 @@ public class EnemyStats : IEntityStats
 
     private Animator anim;
     private Collider rootCollider;
-    private EnemyAIScript controller;
+    private EnemyAIInterface controller;
     private Rigidbody rbody;
     private WeaponScript weaponScript;
     private NavMeshAgent navAgent;
@@ -48,7 +48,7 @@ public class EnemyStats : IEntityStats
     void Start()
     {
         anim = GetComponent<Animator>();
-        controller = GetComponent<EnemyAIScript>();
+        controller = GetComponent<EnemyAIInterface>();
         rootCollider = GetComponent<Collider>();
         rbody = GetComponent<Rigidbody>();
         weaponScript = weaponRoot.GetComponent<WeaponScript>();
