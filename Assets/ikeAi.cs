@@ -284,13 +284,13 @@ public class ikeAi : IEntityStats, EnemyAIInterface, BossInterface
         ChangeState(State.Idle);
     }
 
-    private void OnCollisionEnter(Collision collision)
+/*    private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Player")
         {
             TakeDamage(10);
         }
-    }
+    }*/
 
 
 }
