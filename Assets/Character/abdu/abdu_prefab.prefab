@@ -1862,6 +1862,7 @@ GameObject:
   - component: {fileID: 6433404098248147143}
   - component: {fileID: 1106292006}
   - component: {fileID: 991953740712610583}
+  - component: {fileID: 7639264275815980698}
   m_Layer: 0
   m_Name: abdu_prefab
   m_TagString: FullEnemy
@@ -2000,7 +2001,7 @@ MonoBehaviour:
   staminaRegenRate: 2
   staminaRegenDelay: 0.7
   staminaRegenDelayTimer: 0
-  explosionTransform: {fileID: 0}
+  explosionTransform: {fileID: 767713178040839259}
   isAttacking: 0
   isStaggered: 0
   retreatThreshold: 0
@@ -2028,6 +2029,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 4596510247356143127}
   offset: {x: 0, y: 2, z: 0}
+--- !u!114 &7639264275815980698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5601621903362791029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63a02071e8808e74491114df5aa5cb30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  originalProp: {fileID: 4353710340604091241}
+  brokenProp: {fileID: 6923218410780474392, guid: 7e06941b49d50de4fbb679e8baf46d3b,
+    type: 3}
+  healingItem: {fileID: 0}
+  isBroken: 0
 --- !u!1 &5654441114206041390
 GameObject:
   m_ObjectHideFlags: 0
