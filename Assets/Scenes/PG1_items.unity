@@ -3899,7 +3899,7 @@ MonoBehaviour:
   - {fileID: 808912956}
   currSelectedWeapon: 0
   againstTag: Enemy
-  damage: 10000
+  damage: 10
   staminaCost: 10
   heavyAttacking: 0
   magicProj: {fileID: 3599689716510974525, guid: 5878f0ad2ca5dce4692dbe79ed805d85,
@@ -12625,7 +12625,7 @@ GameObject:
   - component: {fileID: 5866666021821865395}
   m_Layer: 0
   m_Name: ike
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
