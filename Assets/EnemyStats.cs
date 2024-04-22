@@ -83,6 +83,7 @@ public class EnemyStats : IEntityStats
 
     public override void TakeDamage(int damage)
     {
+        Debug.Log("Enemy took " + damage + " damage");
         curHealth -= damage;
         staggerThreshold += (damage / 8f) * (defaultStaggerThreshold / staggerThreshold);
         if (curHealth <= 0)

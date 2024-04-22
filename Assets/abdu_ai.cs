@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class abdu_ai : MonoBehaviour
+public class abdu_ai : MonoBehaviour, EnemyAIInterface
 {
     public enum AIState
     {

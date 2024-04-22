@@ -34,11 +34,11 @@ public class BossHealthUIHandler : MonoBehaviour
         nearBoss = pr.isNearEntity;
         if (nearBoss)
         {
-            if (bossInterface.currHP <= 0)
+            if (!cg.gameObject.activeSelf && bossInterface.currHP <= 0)
             {
                 cg.gameObject.SetActive(true);
                 cg.alpha = 1.0f;
-            } else
+            } else if (!cg.gameObject.activeSelf)
             {
                 cg.gameObject.SetActive(false);
                 cg.alpha = 0.0f;

@@ -2370,11 +2370,6 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 3893294199639930361}
-    - target: {fileID: 5601621903362791035, guid: c720a63e5b45b7e428faf1399a39aaeb,
-        type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 4416926083347132227}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c720a63e5b45b7e428faf1399a39aaeb, type: 3}
 --- !u!4 &384325487 stripped
@@ -3904,7 +3899,7 @@ MonoBehaviour:
   - {fileID: 808912956}
   currSelectedWeapon: 0
   againstTag: Enemy
-  damage: 10
+  damage: 10000
   staminaCost: 10
   heavyAttacking: 0
   magicProj: {fileID: 3599689716510974525, guid: 5878f0ad2ca5dce4692dbe79ed805d85,
@@ -4442,11 +4437,6 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 3893294199639930361}
-    - target: {fileID: 5601621903362791035, guid: c720a63e5b45b7e428faf1399a39aaeb,
-        type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 4416926083347132227}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c720a63e5b45b7e428faf1399a39aaeb, type: 3}
 --- !u!4 &738460033 stripped
@@ -4925,7 +4915,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 50
+  m_Radius: 40
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &806175810
 GameObject:
@@ -8520,11 +8510,6 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 3893294199639930361}
-    - target: {fileID: 5601621903362791035, guid: c720a63e5b45b7e428faf1399a39aaeb,
-        type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 4416926083347132227}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c720a63e5b45b7e428faf1399a39aaeb, type: 3}
 --- !u!1001 &1432064018
@@ -10131,11 +10116,6 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 3893294199639930361}
-    - target: {fileID: 5601621903362791035, guid: c720a63e5b45b7e428faf1399a39aaeb,
-        type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 4416926083347132227}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c720a63e5b45b7e428faf1399a39aaeb, type: 3}
 --- !u!1001 &1809727331
@@ -12645,7 +12625,7 @@ GameObject:
   - component: {fileID: 5866666021821865395}
   m_Layer: 0
   m_Name: ike
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
