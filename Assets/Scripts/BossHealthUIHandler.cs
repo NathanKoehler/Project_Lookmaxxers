@@ -13,13 +13,14 @@ public class BossHealthUIHandler : MonoBehaviour
     public Scrollbar EntityHealth;
     public GameObject boss;
 
-    private BossInterface bossInterface;
+
+    public BossInterface bossInterface;
     public TMP_Text BossName;
 
     // Start is called before the first frame update
     void Start()
     {
-        bossInterface = boss.GetComponent<BossInterface>();
+        bossInterface = boss.GetComponent(typeof(BossInterface)) as BossInterface;
         cg = GetComponent<CanvasGroup>();
         nearBoss = false;
         cg.alpha = 0.0f;
@@ -34,11 +35,11 @@ public class BossHealthUIHandler : MonoBehaviour
         nearBoss = pr.isNearEntity;
         if (nearBoss)
         {
-            if (!cg.gameObject.activeSelf && bossInterface.currHP <= 0)
+            if (bossInterface.currHP > 0)
             {
                 cg.gameObject.SetActive(true);
                 cg.alpha = 1.0f;
-            } else if (!cg.gameObject.activeSelf)
+            } else
             {
                 cg.gameObject.SetActive(false);
                 cg.alpha = 0.0f;
