@@ -11,12 +11,15 @@ public class BossHealthUIHandler : MonoBehaviour
     public bool nearBoss;
     public PlayerRange pr;
     public Scrollbar EntityHealth;
-    public BossInterface bossInterface;
+    public GameObject boss;
+
+    private BossInterface bossInterface;
     public TMP_Text BossName;
 
     // Start is called before the first frame update
     void Start()
     {
+        bossInterface = boss.GetComponent<BossInterface>();
         cg = GetComponent<CanvasGroup>();
         nearBoss = false;
         cg.alpha = 0.0f;

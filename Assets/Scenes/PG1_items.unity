@@ -1178,6 +1178,7 @@ MonoBehaviour:
   nearBoss: 0
   pr: {fileID: 802074986}
   EntityHealth: {fileID: 44138702}
+  boss: {fileID: 919132149243075953}
   BossName: {fileID: 577556767}
 --- !u!114 &136081405
 MonoBehaviour:
@@ -8008,6 +8009,7 @@ MonoBehaviour:
   nearBoss: 0
   pr: {fileID: 437558079}
   EntityHealth: {fileID: 3894381958162363819}
+  boss: {fileID: 219389308}
   BossName: {fileID: 1859424338}
 --- !u!114 &1291522285
 MonoBehaviour:
