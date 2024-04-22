@@ -6,7 +6,7 @@ public class PlayerRange : MonoBehaviour
 {
     // Start is called before the first frame update
     public bool isNearEntity;
-
+    public int gameGoal = -1;
     public IEntityStats player;
 
 
@@ -29,6 +29,10 @@ public class PlayerRange : MonoBehaviour
         if (!isNearEntity && collider.tag == "Player")
         {
             isNearEntity = true;
+            if (gameGoal != -1)
+            {
+                GameManager.Instance.HandleChangeGoal(gameGoal);
+            }
             player = FindEntityWithStats(collider.gameObject).GetComponent<IEntityStats>();
         }
     }

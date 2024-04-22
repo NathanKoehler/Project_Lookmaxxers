@@ -4,25 +4,25 @@ using UnityEngine;
 
 public class GoalUiScript : MonoBehaviour
 {
-    public GameObject goal1;
-    public GameObject goal2;
-    public mikeAi mike;
-    // Start is called before the first frame update
-    void Start()
-    { 
+    public List<GameObject> goals;
+    public int currentGoal = 0;
+
+    private void Awake()
+    {
+        foreach (Transform child in GetComponentInChildren<Transform>())
+        {
+            goals.Add(child.gameObject);
+        }
+        goals[currentGoal].SetActive(true);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ChangeGoal(int index)
     {
-        if (mike.currHP <= 0)
+        if (index > currentGoal)
         {
-            goal1.gameObject.SetActive(false);
-            goal2.gameObject.SetActive(true);
-        }
-        else
-        {
-            goal1.gameObject.SetActive(true);
+            goals[currentGoal].SetActive(false);
+            currentGoal = index;
+            goals[index].SetActive(true);
         }
     }
 }

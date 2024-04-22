@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     public CanvasGroup pauseMenu;
     public CanvasGroup staminaAlert;
 
+    public GoalUiScript goalUi;
+
     public static GameManager Instance
     {
         get
@@ -27,6 +29,8 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         _instance = this;
+
+        goalUi = GameUI.GetComponentInChildren<GoalUiScript>();
     }
     // Start is called before the first frame update
     void Start()
@@ -38,5 +42,10 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void HandleChangeGoal(int index)
+    {
+        goalUi.ChangeGoal(index);
     }
 }

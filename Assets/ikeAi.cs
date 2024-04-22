@@ -270,13 +270,13 @@ public class ikeAi : IEntityStats, EnemyAIInterface, BossInterface
 
     public override IEnumerator Die()
     {
+        GameManager.Instance.HandleChangeGoal(4);
         rootCollider.enabled = false;
         navMeshAgent.enabled = false;
         yield return new WaitForFixedUpdate();
         anim.enabled = false;
 
         ladder.SetActive(true);
-        ladder.GetComponent<ladder>().moveLadder();
     }
 
     public void GoIdle()

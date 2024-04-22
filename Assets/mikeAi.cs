@@ -285,6 +285,7 @@ public class mikeAi : IEntityStats, EnemyAIInterface, BossInterface
 
     public override IEnumerator Die()
     {
+        GameManager.Instance.HandleChangeGoal(2);
         rootCollider.enabled = false;
         navMeshAgent.enabled = false;
         yield return new WaitForFixedUpdate();
