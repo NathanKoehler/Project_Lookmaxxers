@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class mikeAi : IEntityStats
+public class mikeAi : IEntityStats, EnemyAIInterface, BossInterface
 {
     [SerializeField]
     private float staminaRegenRate = 2f;
@@ -35,7 +35,7 @@ public class mikeAi : IEntityStats
     private bool isScreamed = false;
 
     //Stats
-    public string bossName = "A Random Guy from The Streets";
+    public string enemyName = "A Random Guy from The Streets";
     public float currHP = 90;
     public float maxHP = 100;
     public float curStamina = 10;
@@ -54,6 +54,9 @@ public class mikeAi : IEntityStats
 
     public State currentState;
 
+    string BossInterface.enemyName { get => enemyName; set => enemyName = value; }
+    float BossInterface.currHP { get => currHP; set => currHP = value; }
+    float BossInterface.maxHP { get => maxHP; set => maxHP = value; }
 
     void Start()
     {
@@ -294,6 +297,8 @@ public class mikeAi : IEntityStats
         ChangeState(State.Idle);
     }
 
-
-
+    void BossInterface.GoIdle()
+    {
+        throw new System.NotImplementedException();
+    }
 }

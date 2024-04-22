@@ -26,6 +26,7 @@ public class EnemyAIScript : MonoBehaviour, EnemyAIInterface
     private EnemyStats stats;
     private bool hasSearched = true;
     private bool isWaiting = false;
+    public bool isDead = false;
     private float patrolWaitTime = 5f;
     private IEntityStats targetStats;
     NavMeshAgent agent;
@@ -276,5 +277,10 @@ public class EnemyAIScript : MonoBehaviour, EnemyAIInterface
             }
         }
         hasSearched = true;
+    }
+
+    public void GoIdle()
+    {
+        aiState = AIState.PATROL;
     }
 }

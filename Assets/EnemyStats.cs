@@ -159,4 +159,5 @@ public class EnemyStats : IEntityStats
 
         GetComponent<BreakablePropScript>().Break(trans.position, explosionTransform);
     }
+
 }

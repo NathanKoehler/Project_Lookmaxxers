@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class ikeAi : IEntityStats
+public class ikeAi : IEntityStats, EnemyAIInterface, BossInterface
 {
     [SerializeField]
     private float staminaRegenRate = 2f;
@@ -31,7 +31,7 @@ public class ikeAi : IEntityStats
     public GameObject ladder;
 
     //Stats
-    public string bossName = "A Random Guy from The Streets";
+    public string enemyName = "A Random Guy from The Streets";
     public float currHP = 90;
     public float maxHP = 100;
     public float curStamina = 10;
@@ -40,7 +40,9 @@ public class ikeAi : IEntityStats
     [HideInInspector]
     public bool isStaggered = false;
 
-
+    string BossInterface.enemyName { get => enemyName; set => enemyName = value; }
+    float BossInterface.currHP { get => currHP; set => currHP = value; }
+    float BossInterface.maxHP { get => maxHP; set => maxHP = value; }
 
 
 
@@ -195,14 +197,6 @@ public class ikeAi : IEntityStats
 
     private bool CanSeePlayer()
     {
-        // if (bossfightPlayerRange.isNearEntity)
-        // {
-        //     return true;
-        // }
-        // else
-        // {
-        //     return false;
-        // }
 
         // Define the direction from the agent to the player
         Vector3 direction = player.position - head.transform.position;
@@ -251,6 +245,7 @@ public class ikeAi : IEntityStats
             isDead = true;
         }
     }
+
     public override void StartStagger()
     {
         isStaggered = true;
@@ -286,6 +281,7 @@ public class ikeAi : IEntityStats
     {
         ChangeState(State.Idle);
     }
+
 
 
 

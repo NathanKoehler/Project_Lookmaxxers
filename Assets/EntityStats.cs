@@ -15,5 +15,6 @@ public abstract class IEntityStats: MonoBehaviour
 
     public abstract void OnAttackEnd();
 
+
     public bool isDead = false;
 }

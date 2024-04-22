@@ -8,7 +8,11 @@ public class FogWall : MonoBehaviour
     private MeshRenderer meshRenderer;
     public Collider real;
     public Collider fake;
-    [SerializeField] private mikeAi Mike;
+
+    public GameObject enemy;
+
+
+    private BossInterface enemyStats;
     [SerializeField] private CharacterStats player;
 
     [SerializeField] private AudioClip enterSFX;
@@ -16,6 +20,7 @@ public class FogWall : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        enemyStats = enemy.GetComponent<BossInterface>();
         real.enabled = false;
         fake.enabled = true;
 
@@ -25,13 +30,13 @@ public class FogWall : MonoBehaviour
 
     void Update()
     {
-        if (Mike.isDead)
+        if (enemyStats.currHP <= 0)
         {
             Destroy(this.gameObject);
         }
         if (player.isDead)
         {
-            Mike.GoIdle();
+            enemyStats.GoIdle();
             real.enabled = false;
             fake.enabled = true;
         }

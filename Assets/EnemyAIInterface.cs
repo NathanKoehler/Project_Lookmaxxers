@@ -4,5 +4,6 @@ using UnityEngine;
 
 public interface EnemyAIInterface
 {
-    bool enabled { get; set; }
+    public bool enabled { get; set; }
+
 }

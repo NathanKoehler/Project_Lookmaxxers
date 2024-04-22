@@ -11,7 +11,7 @@ public class BossHealthUIHandler : MonoBehaviour
     public bool nearBoss;
     public PlayerRange pr;
     public Scrollbar EntityHealth;
-    public mikeAi mike;
+    public BossInterface bossInterface;
     public TMP_Text BossName;
 
     // Start is called before the first frame update
@@ -20,18 +20,18 @@ public class BossHealthUIHandler : MonoBehaviour
         cg = GetComponent<CanvasGroup>();
         nearBoss = false;
         cg.alpha = 0.0f;
-        BossName.text = mike.bossName;
+        BossName.text = bossInterface.enemyName;
     }
 
     // Update is called once per frame
     void Update()
     {
-        EntityHealth.size = (mike.currHP / mike.maxHP);
+        EntityHealth.size = (bossInterface.currHP / bossInterface.maxHP);
 
         nearBoss = pr.isNearEntity;
         if (nearBoss)
         {
-            if (!mike.isDead)
+            if (bossInterface.currHP <= bossInterface.currHP)
             {
                 cg.gameObject.SetActive(true);
                 cg.alpha = 1.0f;
