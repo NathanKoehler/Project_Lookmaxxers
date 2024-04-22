@@ -1,29 +1,54 @@
-Team: LOOKSMAXXERS LTD
-Members: Benjamin Robertson, Jeremy Vach, Abdullah Atweel, Nathan Koehler, Himanshu Vora, Mike/Zhixuan
+Starting Scene
+- StartScreen
+- PG1
+- WinScreen
 
-How to play:
-WASD - Move
-Hold Shift - Sprint
-E - Roll
-1,2,3 - Switch weapons
-R - Heal
-ESC - Pause menu
+How to Play
+WASD: Movement
+Shift: Sprint
+F: Interact
+E: Roll
+R: Heal
+ESC: Pause Menu
+Left Click: Attack
+Right Click: Heavy Attack
+1, 2, 3: Switch to Weapons
 
+Manifest
+------------------------------
+Abdu
+- mikeAi.cs
+- ikeAi.cs
+- ike_anim.cs
+- abduAi.cs
+Ben
+> Trailer Video
+- Bonfire.cs
+- Fogwall.cs
+Jeremy
+> Gameplay Video
+- GoalUiScript.cs
+- CharacterStats.cs
+- GameManager.cs
+Nathan
+- EnemyAIScript.cs
+- CharacterStats.cs
+- BreakableProp.cs
+Himanshu
+- WeaponScript.cs
+- CubeSpot.cs
+Zhixuan
+- SoundFXManager.cs
+- DisplayTextManager.cs
+- BossHealthUIHandler.cs
 
-Manifest:
-
-Himanshu - Edits to ThirdPersonController and WeaponScript, StartScript, ExitScript, ProjectileScript
-Benjamin - Bonfire Script
-Jeremy - weaponScript, enemyhealthbarscript
-Nathan - mikeAI, EntityStats, EnemyAttack, EnemyStats, PlayerAttack, CharacterStats
-Abdullah - mikeAI.cs (state machine programming), animation controller (nate + mike), VFX (slash), animation clip events for dealing damage, level blockout (level.blend), post-boss ladder (ladder.cs), 3D modeling/texturing/rigging (nate + mike)
-Mike - mikeAI, CharacterStats, PlayerRange
-
-Project Notes:
-- For the level to properly load, you need the latest version of Blender installed. Set that as your default application to open .blend files, and right-click -> reimport the level.blend (search for it in the project tab).
-
-Credits: 
-Wand Pack - https://assetstore.unity.com/packages/3d/props/weapons/3d-items-free-wand-pack-46225
-Animations - Mixamo
-
-
+Third Party Assets
+------------------------------
+Limbus Company (Project Moon)
+- Player Action SFX (Jumping, Walking, Attacking, etc)
+- Enemy Action SFX (Attacking)
+- Environment SFX (Break SFX, Checkpoint SFX, etc)
+Dark Souls III (FromSoftware)
+- Boss Scream SFX
+Mixamo (Adobe)
+- All character animations
