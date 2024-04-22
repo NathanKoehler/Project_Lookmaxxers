@@ -7390,8 +7390,8 @@ MonoBehaviour:
   weaponRoot: {fileID: 1154369220}
   ladder: {fileID: 911939174}
   enemyName: The Sigma Ultra Chad
-  currHP: 1
-  maxHP: 100
+  currHP: 990
+  maxHP: 1000
   curStamina: 10
   maxStamina: 10
   isStaggered: 0
