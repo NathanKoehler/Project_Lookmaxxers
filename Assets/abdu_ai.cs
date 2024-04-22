@@ -208,7 +208,9 @@ public class abdu_ai : MonoBehaviour, EnemyAIInterface
         }
         else if (aiState == AIState.STRAFE)
         {
-            Velocity = Vector3.zero;
+            // Velocity = Vector3.zero;
+            Velocity = -Velocity;
+
         }
 
         animator.SetFloat("locamotion", Velocity.magnitude);
