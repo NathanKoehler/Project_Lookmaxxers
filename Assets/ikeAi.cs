@@ -274,6 +274,8 @@ public class ikeAi : IEntityStats, EnemyAIInterface, BossInterface
         navMeshAgent.enabled = false;
         yield return new WaitForFixedUpdate();
         anim.enabled = false;
+
+        ladder.SetActive(true);
         ladder.GetComponent<ladder>().moveLadder();
     }
 
@@ -282,7 +284,13 @@ public class ikeAi : IEntityStats, EnemyAIInterface, BossInterface
         ChangeState(State.Idle);
     }
 
-
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            TakeDamage(10);
+        }
+    }
 
 
 }
